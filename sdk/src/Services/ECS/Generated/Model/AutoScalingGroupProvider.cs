@@ -40,7 +40,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property AutoScalingGroupArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) that identifies the Auto Scaling group.
+        /// The Amazon Resource Name (ARN) that identifies the Auto Scaling group, or the Auto
+        /// Scaling group name.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

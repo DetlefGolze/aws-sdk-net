@@ -33,13 +33,35 @@ namespace Amazon.FSx.Model
     /// </summary>
     public partial class UpdateFileSystemOpenZFSConfiguration
     {
+        private List<string> _addRouteTableIds = new List<string>();
         private int? _automaticBackupRetentionDays;
         private bool? _copyTagsToBackups;
         private bool? _copyTagsToVolumes;
         private string _dailyAutomaticBackupStartTime;
         private DiskIopsConfiguration _diskIopsConfiguration;
+        private List<string> _removeRouteTableIds = new List<string>();
         private int? _throughputCapacity;
         private string _weeklyMaintenanceStartTime;
+
+        /// <summary>
+        /// Gets and sets the property AddRouteTableIds. 
+        /// <para>
+        /// (Multi-AZ only) A list of IDs of new virtual private cloud (VPC) route tables to associate
+        /// (add) with your Amazon FSx for OpenZFS file system.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=50)]
+        public List<string> AddRouteTableIds
+        {
+            get { return this._addRouteTableIds; }
+            set { this._addRouteTableIds = value; }
+        }
+
+        // Check to see if AddRouteTableIds property is set
+        internal bool IsSetAddRouteTableIds()
+        {
+            return this._addRouteTableIds != null && this._addRouteTableIds.Count > 0; 
+        }
 
         /// <summary>
         /// Gets and sets the property AutomaticBackupRetentionDays.
@@ -136,6 +158,27 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RemoveRouteTableIds. 
+        /// <para>
+        /// (Multi-AZ only) A list of IDs of existing virtual private cloud (VPC) route tables
+        /// to disassociate (remove) from your Amazon FSx for OpenZFS file system. You can use
+        /// the API operation to retrieve the list of VPC route table IDs for a file system.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=50)]
+        public List<string> RemoveRouteTableIds
+        {
+            get { return this._removeRouteTableIds; }
+            set { this._removeRouteTableIds = value; }
+        }
+
+        // Check to see if RemoveRouteTableIds property is set
+        internal bool IsSetRemoveRouteTableIds()
+        {
+            return this._removeRouteTableIds != null && this._removeRouteTableIds.Count > 0; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ThroughputCapacity. 
         /// <para>
         /// The throughput of an Amazon FSx for OpenZFS file system, measured in megabytes per
@@ -143,13 +186,13 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>SINGLE_AZ_1</code>, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
-        /// or 4096 MB/s.
+        /// For <code>MULTI_AZ_1</code> and <code>SINGLE_AZ_2</code>, valid values are 160, 320,
+        /// 640, 1280, 2560, 3840, 5120, 7680, or 10240 MBps.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>SINGLE_AZ_2</code>, valid values are 160, 320, 640, 1280, 2560, 3840, 5120,
-        /// 7680, or 10240 MB/s.
+        /// For <code>SINGLE_AZ_1</code>, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
+        /// or 4096 MB/s.
         /// </para>
         ///  </li> </ul>
         /// </summary>

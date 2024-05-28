@@ -7063,8 +7063,9 @@ namespace Amazon.Pinpoint
         #region  RemoveAttributes
 
         /// <summary>
-        /// Removes one or more attributes, of the same attribute type, from all the endpoints
-        /// that are associated with an application.
+        /// Removes one or more custom attributes, of the same attribute type, from the application.
+        /// Existing endpoints still have the attributes but Amazon Pinpoint will stop capturing
+        /// new or changed values for these attributes.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemoveAttributes service method.</param>
         /// 
@@ -9372,5 +9373,28 @@ namespace Amazon.Pinpoint
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonPinpointEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

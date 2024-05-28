@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
+using System.Security.Cryptography;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using Amazon.S3.Util;
-
-using Amazon.Runtime;
-using Amazon.Runtime.Internal.Util;
 using AWSSDK_DotNet.IntegrationTests.Utils;
 
 namespace AWSSDK_DotNet.IntegrationTests.Tests.S3
@@ -27,6 +21,7 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.S3
         public static readonly string BasePath = @"c:\temp\test\transferutility\";
 
         private static string bucketName;
+        private static string ssecBucketName;
         private static string octetStreamContentType = "application/octet-stream";
         private static string plainTextContentType = "text/plain";
         private static string fullPath;
@@ -36,7 +31,36 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.S3
         [ClassInitialize()]
         public static void ClassInitialize(TestContext a)
         {
+            // Create standard bucket for operations
             bucketName = S3TestUtils.CreateBucketWithWait(Client);
+
+            // Create a bucket specifically for the SSE-C tests as a bucket policy has to be set on it to require SSE-C.
+            ssecBucketName = S3TestUtils.CreateBucketWithWait(Client);
+            // Apply the bucket policy to SSE-C: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html
+            Client.PutBucketPolicy(new PutBucketPolicyRequest
+            {
+                Policy =
+                @"{
+                    ""Version"": ""2012-10-17"",
+                    ""Id"": ""PutObjectPolicy"",
+                    ""Statement"": [
+                        {
+                            ""Sid"": ""RequireSSECObjectUploads"",
+                            ""Effect"": ""Deny"",
+                            ""Principal"": ""*"",
+                            ""Action"": ""s3:PutObject"",
+                            ""Resource"": ""arn:aws:s3:::" + ssecBucketName + @"/*"",
+                            ""Condition"": {
+                                ""Null"": {
+                                    ""s3:x-amz-server-side-encryption-customer-algorithm"": ""true""
+                                }
+                            }
+                        }
+                    ]
+                }",
+                BucketName = ssecBucketName
+            });
+
             fullPath = Path.GetFullPath(testFile);
             File.WriteAllText(fullPath, testContent);
         }
@@ -45,6 +69,7 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.S3
         public static void ClassCleanup()
         {
             AmazonS3Util.DeleteS3BucketWithObjects(Client, bucketName);
+            AmazonS3Util.DeleteS3BucketWithObjects(Client, ssecBucketName);
             BaseClean();
             if (Directory.Exists(BasePath))
             {
@@ -109,6 +134,100 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.S3
                 tu.Download(downloadRequest);
                 TestDownloadedFile(downloadPath);
             }
+        }
+        [TestMethod]
+        [TestCategory("S3")]
+        public void UploadUnSeekableStreamTest()
+        {
+            var client = Client;
+            var fileName = UtilityMethods.GenerateName(@"SimpleUploadTest\SmallFile");
+            var path = Path.Combine(BasePath, fileName);
+            var fileSize = 20 * MEG_SIZE;
+            UtilityMethods.GenerateFile(path, fileSize);
+            //take the generated file and turn it into an unseekable stream
+            
+            var stream = GenerateUnseekableStreamFromFile(path);
+            using (var tu = new Amazon.S3.Transfer.TransferUtility(client))
+            {
+                tu.Upload(stream, bucketName, fileName);
+
+                var metadata = Client.GetObjectMetadata(new GetObjectMetadataRequest
+                {
+                    BucketName = bucketName,
+                    Key = fileName
+                });
+                Assert.AreEqual(fileSize, metadata.ContentLength);
+
+                //Download the file and validate content of downloaded file is equal.
+                var downloadPath = path + ".download";
+                var downloadRequest = new TransferUtilityDownloadRequest
+                {
+                    BucketName = bucketName,
+                    Key = fileName,
+                    FilePath = downloadPath
+                };
+                tu.Download(downloadRequest);
+                UtilityMethods.CompareFiles(path, downloadPath);
+            }
+        }
+        private UnseekableStream GenerateUnseekableStreamFromFile(string filePath)
+        {
+            try
+            {
+                byte[] fileBytes = File.ReadAllBytes(filePath);
+                UnseekableStream unseekableStream = new UnseekableStream(fileBytes);
+                unseekableStream.Position = 0;
+
+                return unseekableStream;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while generating the stream: {ex.Message}");
+                throw;
+            }
+        }
+
+        private void UploadWithSSE_C(long fileSize, string name)
+        {
+            // Create a fileSize file to upload
+            var fileName = UtilityMethods.GenerateName(name);
+            var fullFilePath = Path.Combine(BasePath, fileName);
+            UtilityMethods.GenerateFile(fullFilePath, fileSize);
+
+            // Create an encryption key                
+            Aes aesEncryption = Aes.Create();
+            aesEncryption.KeySize = 256;
+            aesEncryption.GenerateKey();
+            string base64Key = Convert.ToBase64String(aesEncryption.Key);
+
+            // Upload the file. A permission denied exception would be thrown if an incorrect request is made
+            // missing the required ServerSideEncryptionCustomerMethod and ServerSideEncryptionCustomerProvidedKey
+            // values.
+            var tu = new TransferUtility(Client);
+            var request = new TransferUtilityUploadRequest
+            {
+                BucketName = ssecBucketName,
+                FilePath = fullFilePath,
+                Key = fileName,
+                ServerSideEncryptionCustomerMethod = ServerSideEncryptionCustomerMethod.AES256,
+                ServerSideEncryptionCustomerProvidedKey = base64Key
+            };
+
+            tu.Upload(request);
+        }
+
+        [TestMethod]
+        [TestCategory("S3")]
+        public void SimpleUploadWithSSE_C_SmallFile()
+        {
+            UploadWithSSE_C(KILO_SIZE, @"SimpleUploadTest\SmallFile");
+        }
+
+        [TestMethod]
+        [TestCategory("S3")]
+        public void SimpleUploadWithSSE_C_LargeFile()
+        {
+            UploadWithSSE_C(16 * MEG_SIZE, @"SimpleUploadTest\LargeFile");            
         }
 
         private void TestDownloadedFile(string downloadPath)
@@ -847,5 +966,21 @@ namespace AWSSDK_DotNet.IntegrationTests.Tests.S3
                 }
             }
         }
+        private class UnseekableStream : MemoryStream
+        {
+            public UnseekableStream(byte[] buffer) : base(buffer) { }
+
+            public UnseekableStream(): base() { }
+
+            public override bool CanSeek
+            {
+                get => false;
+            }
+            public override long Length
+            {
+                get => throw new NotSupportedException();
+            }
+        }
     }
+
 }

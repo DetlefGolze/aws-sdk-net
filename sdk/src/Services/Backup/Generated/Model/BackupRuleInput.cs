@@ -40,6 +40,7 @@ namespace Amazon.Backup.Model
         private Dictionary<string, string> _recoveryPointTags = new Dictionary<string, string>();
         private string _ruleName;
         private string _scheduleExpression;
+        private string _scheduleExpressionTimezone;
         private long? _startWindowMinutes;
         private string _targetBackupVaultName;
 
@@ -122,6 +123,10 @@ namespace Amazon.Backup.Model
         /// Feature availability by resource</a> table. Backup ignores this expression for other
         /// resource types.
         /// </para>
+        ///  
+        /// <para>
+        /// This parameter has a maximum value of 100 years (36,500 days).
+        /// </para>
         /// </summary>
         public Lifecycle Lifecycle
         {
@@ -193,11 +198,34 @@ namespace Amazon.Backup.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ScheduleExpressionTimezone. 
+        /// <para>
+        /// This is the timezone in which the schedule expression is set. By default, ScheduleExpressions
+        /// are in UTC. You can modify this to a specified timezone.
+        /// </para>
+        /// </summary>
+        public string ScheduleExpressionTimezone
+        {
+            get { return this._scheduleExpressionTimezone; }
+            set { this._scheduleExpressionTimezone = value; }
+        }
+
+        // Check to see if ScheduleExpressionTimezone property is set
+        internal bool IsSetScheduleExpressionTimezone()
+        {
+            return this._scheduleExpressionTimezone != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property StartWindowMinutes. 
         /// <para>
         /// A value in minutes after a backup is scheduled before a job will be canceled if it
         /// doesn't start successfully. This value is optional. If this value is included, it
         /// must be at least 60 minutes to avoid errors.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter has a maximum value of 100 years (52,560,000 minutes).
         /// </para>
         ///  
         /// <para>

@@ -1592,8 +1592,8 @@ namespace Amazon.IoT
         ///  <note> 
         /// <para>
         /// The CSR must include a public key that is either an RSA key with a length of at least
-        /// 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. For supported certificates,
-        /// consult <a href="https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms">
+        /// 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST P-521 curves. For supported
+        /// certificates, consult <a href="https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms">
         /// Certificate signing algorithms supported by IoT</a>. 
         /// </para>
         ///  </note> <note> 
@@ -1695,8 +1695,8 @@ namespace Amazon.IoT
         ///  <note> 
         /// <para>
         /// The CSR must include a public key that is either an RSA key with a length of at least
-        /// 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. For supported certificates,
-        /// consult <a href="https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms">
+        /// 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST P-521 curves. For supported
+        /// certificates, consult <a href="https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms">
         /// Certificate signing algorithms supported by IoT</a>. 
         /// </para>
         ///  </note> <note> 
@@ -1801,8 +1801,8 @@ namespace Amazon.IoT
         ///  <note> 
         /// <para>
         /// The CSR must include a public key that is either an RSA key with a length of at least
-        /// 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. For supported certificates,
-        /// consult <a href="https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms">
+        /// 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST P-521 curves. For supported
+        /// certificates, consult <a href="https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms">
         /// Certificate signing algorithms supported by IoT</a>. 
         /// </para>
         ///  </note> <note> 
@@ -4777,7 +4777,7 @@ namespace Amazon.IoT
         ///  
         /// <para>
         ///  <b>Note:</b> If a package version is designated as default, you must remove the designation
-        /// from the package using the <a>UpdatePackage</a> action.
+        /// from the software package using the <a>UpdatePackage</a> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePackageVersion service method.</param>
@@ -15625,7 +15625,7 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Updates the supported fields for a specific package.
+        /// Updates the supported fields for a specific software package.
         /// 
         ///  
         /// <para>
@@ -15679,7 +15679,7 @@ namespace Amazon.IoT
 
 
         /// <summary>
-        /// Updates the package configuration.
+        /// Updates the software package configuration.
         /// 
         ///  
         /// <para>
@@ -16327,5 +16327,28 @@ namespace Amazon.IoT
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonIoTEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

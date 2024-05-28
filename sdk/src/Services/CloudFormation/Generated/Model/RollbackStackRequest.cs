@@ -70,6 +70,7 @@ namespace Amazon.CloudFormation.Model
     public partial class RollbackStackRequest : AmazonCloudFormationRequest
     {
         private string _clientRequestToken;
+        private bool? _retainExceptOnCreate;
         private string _roleARN;
         private string _stackName;
 
@@ -90,6 +91,30 @@ namespace Amazon.CloudFormation.Model
         internal bool IsSetClientRequestToken()
         {
             return this._clientRequestToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RetainExceptOnCreate. 
+        /// <para>
+        /// When set to <code>true</code>, newly created resources are deleted when the operation
+        /// rolls back. This includes newly created resources marked with a deletion policy of
+        /// <code>Retain</code>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <code>false</code> 
+        /// </para>
+        /// </summary>
+        public bool RetainExceptOnCreate
+        {
+            get { return this._retainExceptOnCreate.GetValueOrDefault(); }
+            set { this._retainExceptOnCreate = value; }
+        }
+
+        // Check to see if RetainExceptOnCreate property is set
+        internal bool IsSetRetainExceptOnCreate()
+        {
+            return this._retainExceptOnCreate.HasValue; 
         }
 
         /// <summary>

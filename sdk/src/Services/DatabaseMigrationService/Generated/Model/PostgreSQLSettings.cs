@@ -126,9 +126,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property DatabaseMode. 
         /// <para>
-        /// Specifies whether to use default or custom replication behavior for PostgreSQL-compatible
-        /// endpoints. You can use this setting to specify replication behavior for endpoints
-        /// that require additional configuration, such as Babelfish endpoints.
+        /// Specifies the default behavior of the replication's handling of PostgreSQL- compatible
+        /// endpoints that require some additional configuration, such as Babelfish endpoints.
         /// </para>
         /// </summary>
         public DatabaseMode DatabaseMode
@@ -291,7 +290,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property MapBooleanAsBoolean. 
         /// <para>
         /// When true, lets PostgreSQL migrate the boolean type as boolean. By default, PostgreSQL
-        /// migrates booleans as <code>varchar(5)</code>.
+        /// migrates booleans as <code>varchar(5)</code>. You must set this setting on both the
+        /// source and target endpoints for it to take effect.
         /// </para>
         /// </summary>
         public bool MapBooleanAsBoolean

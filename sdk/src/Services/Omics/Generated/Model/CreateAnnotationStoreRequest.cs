@@ -25,7 +25,6 @@ using System.Net;
 
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
-using Amazon.Runtime.Internal.Auth;
 
 namespace Amazon.Omics.Model
 {
@@ -42,6 +41,7 @@ namespace Amazon.Omics.Model
         private StoreFormat _storeFormat;
         private StoreOptions _storeOptions;
         private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private string _versionName;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -68,6 +68,7 @@ namespace Amazon.Omics.Model
         /// A name for the store.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=3, Max=255)]
         public string Name
         {
             get { return this._name; }
@@ -172,12 +173,24 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
-        /// Get the signer to use for this request.
+        /// Gets and sets the property VersionName. 
+        /// <para>
+        ///  The name given to an annotation store version to distinguish it from other versions.
+        /// 
+        /// </para>
         /// </summary>
-        /// <returns>A signer for this request.</returns>
-        override protected AbstractAWSSigner CreateSigner()
+        [AWSProperty(Min=3, Max=255)]
+        public string VersionName
         {
-            return new AWS4Signer();
+            get { return this._versionName; }
+            set { this._versionName = value; }
         }
+
+        // Check to see if VersionName property is set
+        internal bool IsSetVersionName()
+        {
+            return this._versionName != null;
+        }
+
     }
 }

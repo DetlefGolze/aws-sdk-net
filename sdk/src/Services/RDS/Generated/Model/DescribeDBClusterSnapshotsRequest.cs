@@ -46,6 +46,7 @@ namespace Amazon.RDS.Model
     public partial class DescribeDBClusterSnapshotsRequest : AmazonRDSRequest
     {
         private string _dbClusterIdentifier;
+        private string _dbClusterResourceId;
         private string _dbClusterSnapshotIdentifier;
         private List<Filter> _filters = new List<Filter>();
         private bool? _includePublic;
@@ -81,6 +82,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetDBClusterIdentifier()
         {
             return this._dbClusterIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DbClusterResourceId. 
+        /// <para>
+        /// A specific DB cluster resource ID to describe.
+        /// </para>
+        /// </summary>
+        public string DbClusterResourceId
+        {
+            get { return this._dbClusterResourceId; }
+            set { this._dbClusterResourceId = value; }
+        }
+
+        // Check to see if DbClusterResourceId property is set
+        internal bool IsSetDbClusterResourceId()
+        {
+            return this._dbClusterResourceId != null;
         }
 
         /// <summary>
@@ -160,9 +179,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property IncludePublic. 
         /// <para>
-        /// A value that indicates whether to include manual DB cluster snapshots that are public
-        /// and can be copied or restored by any Amazon Web Services account. By default, the
-        /// public snapshots are not included.
+        /// Specifies whether to include manual DB cluster snapshots that are public and can be
+        /// copied or restored by any Amazon Web Services account. By default, the public snapshots
+        /// are not included.
         /// </para>
         ///  
         /// <para>
@@ -185,9 +204,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property IncludeShared. 
         /// <para>
-        /// A value that indicates whether to include shared manual DB cluster snapshots from
-        /// other Amazon Web Services accounts that this Amazon Web Services account has been
-        /// given permission to copy or restore. By default, these snapshots are not included.
+        /// Specifies whether to include shared manual DB cluster snapshots from other Amazon
+        /// Web Services accounts that this Amazon Web Services account has been given permission
+        /// to copy or restore. By default, these snapshots are not included.
         /// </para>
         ///  
         /// <para>

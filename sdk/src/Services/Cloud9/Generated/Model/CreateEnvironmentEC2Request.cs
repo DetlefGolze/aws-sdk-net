@@ -166,13 +166,20 @@ namespace Amazon.Cloud9.Model
         ///  
         /// <para>
         /// The default Amazon Linux AMI is currently used if the parameter isn't explicitly assigned
-        /// a value in the request. 
+        /// a value in the request. Because Amazon Linux AMI has ended standard support as of
+        /// December 31, 2020, we recommend you choose Amazon Linux 2, which includes long term
+        /// support through 2023.
         /// </para>
         ///  
         /// <para>
-        /// In the future the parameter for Amazon Linux will no longer be available when you
-        /// specify an AMI for your instance. Amazon Linux 2 will then become the default AMI,
-        /// which is used to launch your instance if no parameter is explicitly defined.
+        /// From December 31, 2023, the parameter for Amazon Linux will no longer be available
+        /// when you specify an AMI for your instance. Amazon Linux 2 will then become the default
+        /// AMI, which is used to launch your instance if no parameter is explicitly defined.
+        /// </para>
+        ///  
+        /// <para>
+        /// Since Ubuntu 18.04 has ended standard support as of May 31, 2023, we recommend you
+        /// choose Ubuntu 22.04.
         /// </para>
         ///  
         /// <para>
@@ -189,6 +196,10 @@ namespace Amazon.Cloud9.Model
         ///  </li> <li> 
         /// <para>
         /// Ubuntu 18.04: <code>ubuntu-18.04-x86_64</code> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Ubuntu 22.04: <code>ubuntu-22.04-x86_64</code> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -207,6 +218,11 @@ namespace Amazon.Cloud9.Model
         ///  </li> <li> 
         /// <para>
         /// Ubuntu 18.04: <code>resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64</code>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Ubuntu 22.04: <code>resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64</code>
         /// 
         /// </para>
         ///  </li> </ul>

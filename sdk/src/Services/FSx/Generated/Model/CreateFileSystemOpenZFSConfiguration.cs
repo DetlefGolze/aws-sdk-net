@@ -40,7 +40,10 @@ namespace Amazon.FSx.Model
         private string _dailyAutomaticBackupStartTime;
         private OpenZFSDeploymentType _deploymentType;
         private DiskIopsConfiguration _diskIopsConfiguration;
+        private string _endpointIpAddressRange;
+        private string _preferredSubnetId;
         private OpenZFSCreateRootVolumeConfiguration _rootVolumeConfiguration;
+        private List<string> _routeTableIds = new List<string>();
         private int? _throughputCapacity;
         private string _weeklyMaintenanceStartTime;
 
@@ -132,20 +135,28 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SINGLE_AZ_1</code>- (Default) Creates file systems with throughput capacities
-        /// of 64 - 4,096 MBps. <code>Single_AZ_1</code> is available in all Amazon Web Services
-        /// Regions where Amazon FSx for OpenZFS is available.
+        ///  <code>MULTI_AZ_1</code>- Creates file systems with high availability that are configured
+        /// for Multi-AZ redundancy to tolerate temporary unavailability in Availability Zones
+        /// (AZs). <code>Multi_AZ_1</code> is available only in the US East (N. Virginia), US
+        /// East (Ohio), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Tokyo), and
+        /// Europe (Ireland) Amazon Web Services Regions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <code>SINGLE_AZ_1</code>- Creates file systems with throughput capacities of 64 -
+        /// 4,096 MB/s. <code>Single_AZ_1</code> is available in all Amazon Web Services Regions
+        /// where Amazon FSx for OpenZFS is available.
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <code>SINGLE_AZ_2</code>- Creates file systems with throughput capacities of 160
         /// - 10,240 MB/s using an NVMe L2ARC cache. <code>Single_AZ_2</code> is available only
-        /// in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe (Ireland)
-        /// Amazon Web Services Regions.
+        /// in the US East (N. Virginia), US East (Ohio), US West (Oregon), Asia Pacific (Singapore),
+        /// Asia Pacific (Tokyo), and Europe (Ireland) Amazon Web Services Regions.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see: <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/availability-durability.html#available-aws-regions">Deployment
+        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/availability-durability.html#available-aws-regions">Deployment
         /// type availability</a> and <a href="https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#zfs-fs-performance">File
         /// system performance</a> in the <i>Amazon FSx for OpenZFS User Guide</i>.
         /// </para>
@@ -179,6 +190,49 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EndpointIpAddressRange. 
+        /// <para>
+        /// (Multi-AZ only) Specifies the IP address range in which the endpoints to access your
+        /// file system will be created. By default in the Amazon FSx API and Amazon FSx console,
+        /// Amazon FSx selects an available /28 IP address range for you from one of the VPC's
+        /// CIDR ranges. You can have overlapping endpoint IP addresses for file systems deployed
+        /// in the same VPC/route tables.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=9, Max=17)]
+        public string EndpointIpAddressRange
+        {
+            get { return this._endpointIpAddressRange; }
+            set { this._endpointIpAddressRange = value; }
+        }
+
+        // Check to see if EndpointIpAddressRange property is set
+        internal bool IsSetEndpointIpAddressRange()
+        {
+            return this._endpointIpAddressRange != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PreferredSubnetId. 
+        /// <para>
+        /// Required when <code>DeploymentType</code> is set to <code>MULTI_AZ_1</code>. This
+        /// specifies the subnet in which you want the preferred file server to be located.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=15, Max=24)]
+        public string PreferredSubnetId
+        {
+            get { return this._preferredSubnetId; }
+            set { this._preferredSubnetId = value; }
+        }
+
+        // Check to see if PreferredSubnetId property is set
+        internal bool IsSetPreferredSubnetId()
+        {
+            return this._preferredSubnetId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property RootVolumeConfiguration. 
         /// <para>
         /// The configuration Amazon FSx uses when creating the root value of the Amazon FSx for
@@ -198,6 +252,28 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RouteTableIds. 
+        /// <para>
+        /// (Multi-AZ only) Specifies the route tables in which Amazon FSx creates the rules for
+        /// routing traffic to the correct file server. You should specify all virtual private
+        /// cloud (VPC) route tables associated with the subnets in which your clients are located.
+        /// By default, Amazon FSx selects your VPC's default route table.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=50)]
+        public List<string> RouteTableIds
+        {
+            get { return this._routeTableIds; }
+            set { this._routeTableIds = value; }
+        }
+
+        // Check to see if RouteTableIds property is set
+        internal bool IsSetRouteTableIds()
+        {
+            return this._routeTableIds != null && this._routeTableIds.Count > 0; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ThroughputCapacity. 
         /// <para>
         /// Specifies the throughput of an Amazon FSx for OpenZFS file system, measured in megabytes
@@ -205,13 +281,13 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>SINGLE_AZ_1</code>, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
-        /// or 4096 MBps.
+        /// For <code>MULTI_AZ_1</code> and <code>SINGLE_AZ_2</code>, valid values are 160, 320,
+        /// 640, 1280, 2560, 3840, 5120, 7680, or 10240 MBps.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>SINGLE_AZ_2</code>, valid values are 160, 320, 640, 1280, 2560, 3840, 5120,
-        /// 7680, or 10240 MBps.
+        /// For <code>SINGLE_AZ_1</code>, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
+        /// or 4096 MBps.
         /// </para>
         ///  </li> </ul> 
         /// <para>

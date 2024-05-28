@@ -81,7 +81,8 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property ModelName. 
         /// <para>
-        /// The name of the ML model used by the inference scheduler to be listed. 
+        /// The name of the machine learning model used by the inference scheduler to be listed.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]
@@ -120,7 +121,7 @@ namespace Amazon.LookoutEquipment.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Specifies the current status of the inference schedulers to list.
+        /// Specifies the current status of the inference schedulers.
         /// </para>
         /// </summary>
         public InferenceSchedulerStatus Status

@@ -543,7 +543,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"SoftwareTokenMFANotFoundException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ChangePassword":{
       "name":"ChangePassword",
@@ -590,7 +591,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ConfirmForgotPassword":{
       "name":"ConfirmForgotPassword",
@@ -1039,7 +1041,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ForgotPassword":{
       "name":"ForgotPassword",
@@ -1103,7 +1106,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "GetGroup":{
       "name":"GetGroup",
@@ -1135,6 +1139,22 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalErrorException"}
+      ]
+    },
+    "GetLogDeliveryConfiguration":{
+      "name":"GetLogDeliveryConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLogDeliveryConfigurationRequest"},
+      "output":{"shape":"GetLogDeliveryConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetSigningCertificate":{
@@ -1250,7 +1270,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "InitiateAuth":{
       "name":"InitiateAuth",
@@ -1298,7 +1319,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ListGroups":{
       "name":"ListGroups",
@@ -1519,6 +1541,23 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"UnsupportedTokenTypeException"},
         {"shape":"ForbiddenException"}
+      ],
+      "authtype":"none"
+    },
+    "SetLogDeliveryConfiguration":{
+      "name":"SetLogDeliveryConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetLogDeliveryConfigurationRequest"},
+      "output":{"shape":"SetLogDeliveryConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "SetRiskConfiguration":{
@@ -1573,7 +1612,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "SetUserPoolMfaConfig":{
       "name":"SetUserPoolMfaConfig",
@@ -1722,7 +1762,8 @@
         {"shape":"UserNotFoundException"},
         {"shape":"UserPoolAddOnNotEnabledException"},
         {"shape":"InternalErrorException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "UpdateDeviceStatus":{
       "name":"UpdateDeviceStatus",
@@ -1743,7 +1784,8 @@
         {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "UpdateGroup":{
       "name":"UpdateGroup",
@@ -1906,7 +1948,8 @@
         {"shape":"SoftwareTokenMFANotFoundException"},
         {"shape":"CodeMismatchException"},
         {"shape":"ForbiddenException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "VerifyUserAttribute":{
       "name":"VerifyUserAttribute",
@@ -1935,7 +1978,11 @@
     }
   },
   "shapes":{
-    "AWSAccountIdType":{"type":"string"},
+    "AWSAccountIdType":{
+      "type":"string",
+      "max":12,
+      "pattern":"[0-9]+"
+    },
     "AccessTokenValidityType":{
       "type":"integer",
       "max":86400,
@@ -2663,7 +2710,11 @@
       "max":200
     },
     "BooleanType":{"type":"boolean"},
-    "CSSType":{"type":"string"},
+    "CSSType":{
+      "type":"string",
+      "max":131072,
+      "min":0
+    },
     "CSSVersionType":{"type":"string"},
     "CallbackURLsListType":{
       "type":"list",
@@ -2773,6 +2824,12 @@
       "min":1,
       "pattern":"[\\w+]+",
       "sensitive":true
+    },
+    "CloudWatchLogsConfigurationType":{
+      "type":"structure",
+      "members":{
+        "LogGroupArn":{"shape":"ArnType"}
+      }
     },
     "CodeDeliveryDetailsListType":{
       "type":"list",
@@ -2953,7 +3010,7 @@
       ],
       "members":{
         "UserPoolId":{"shape":"UserPoolIdType"},
-        "ProviderName":{"shape":"ProviderNameTypeV1"},
+        "ProviderName":{"shape":"ProviderNameTypeV2"},
         "ProviderType":{"shape":"IdentityProviderTypeType"},
         "ProviderDetails":{"shape":"ProviderDetailsType"},
         "AttributeMapping":{"shape":"AttributeMappingType"},
@@ -3584,6 +3641,10 @@
         "CompromisedCredentialsDetected":{"shape":"WrappedBooleanType"}
       }
     },
+    "EventSourceName":{
+      "type":"string",
+      "enum":["userNotification"]
+    },
     "EventType":{
       "type":"string",
       "enum":[
@@ -3725,6 +3786,19 @@
       "required":["IdentityProvider"],
       "members":{
         "IdentityProvider":{"shape":"IdentityProviderType"}
+      }
+    },
+    "GetLogDeliveryConfigurationRequest":{
+      "type":"structure",
+      "required":["UserPoolId"],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"}
+      }
+    },
+    "GetLogDeliveryConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "LogDeliveryConfiguration":{"shape":"LogDeliveryConfigurationType"}
       }
     },
     "GetSigningCertificateRequest":{
@@ -3906,7 +3980,11 @@
       "max":50,
       "min":0
     },
-    "ImageFileType":{"type":"blob"},
+    "ImageFileType":{
+      "type":"blob",
+      "max":131072,
+      "min":0
+    },
     "ImageUrlType":{"type":"string"},
     "InitiateAuthRequest":{
       "type":"structure",
@@ -4203,6 +4281,39 @@
         "PaginationToken":{"shape":"SearchPaginationTokenType"}
       }
     },
+    "LogConfigurationListType":{
+      "type":"list",
+      "member":{"shape":"LogConfigurationType"},
+      "max":1,
+      "min":0
+    },
+    "LogConfigurationType":{
+      "type":"structure",
+      "required":[
+        "LogLevel",
+        "EventSource"
+      ],
+      "members":{
+        "LogLevel":{"shape":"LogLevel"},
+        "EventSource":{"shape":"EventSourceName"},
+        "CloudWatchLogsConfiguration":{"shape":"CloudWatchLogsConfigurationType"}
+      }
+    },
+    "LogDeliveryConfigurationType":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "LogConfigurations"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "LogConfigurations":{"shape":"LogConfigurationListType"}
+      }
+    },
+    "LogLevel":{
+      "type":"string",
+      "enum":["ERROR"]
+    },
     "LogoutURLsListType":{
       "type":"list",
       "member":{"shape":"RedirectUrlType"},
@@ -4302,6 +4413,7 @@
     },
     "PaginationKey":{
       "type":"string",
+      "max":131072,
       "min":1,
       "pattern":"[\\S]+"
     },
@@ -4390,13 +4502,13 @@
       "type":"string",
       "max":32,
       "min":1,
-      "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+"
+      "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}\\p{Z}]+"
     },
-    "ProviderNameTypeV1":{
+    "ProviderNameTypeV2":{
       "type":"string",
       "max":32,
-      "min":3,
-      "pattern":"[^_][\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}][^_]+"
+      "min":1,
+      "pattern":"[^_\\p{Z}][\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}][^_\\p{Z}]+"
     },
     "ProviderUserIdentifierType":{
       "type":"structure",
@@ -4711,6 +4823,23 @@
       "min":20,
       "sensitive":true
     },
+    "SetLogDeliveryConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "LogConfigurations"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "LogConfigurations":{"shape":"LogConfigurationListType"}
+      }
+    },
+    "SetLogDeliveryConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "LogDeliveryConfiguration":{"shape":"LogDeliveryConfigurationType"}
+      }
+    },
     "SetRiskConfigurationRequest":{
       "type":"structure",
       "required":["UserPoolId"],
@@ -4927,7 +5056,11 @@
         "MaxLength":{"shape":"StringType"}
       }
     },
-    "StringType":{"type":"string"},
+    "StringType":{
+      "type":"string",
+      "max":131072,
+      "min":0
+    },
     "SupportedIdentityProvidersListType":{
       "type":"list",
       "member":{"shape":"ProviderNameType"}
@@ -5438,7 +5571,11 @@
         "Id":{"shape":"UserPoolIdType"},
         "Name":{"shape":"UserPoolNameType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
-        "Status":{"shape":"StatusType"},
+        "Status":{
+          "shape":"StatusType",
+          "deprecated":true,
+          "deprecatedMessage":"This property is no longer available."
+        },
         "LastModifiedDate":{"shape":"DateType"},
         "CreationDate":{"shape":"DateType"}
       }
@@ -5497,7 +5634,11 @@
         "Policies":{"shape":"UserPoolPolicyType"},
         "DeletionProtection":{"shape":"DeletionProtectionType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
-        "Status":{"shape":"StatusType"},
+        "Status":{
+          "shape":"StatusType",
+          "deprecated":true,
+          "deprecatedMessage":"This property is no longer available."
+        },
         "LastModifiedDate":{"shape":"DateType"},
         "CreationDate":{"shape":"DateType"},
         "SchemaAttributes":{"shape":"SchemaAttributesListType"},

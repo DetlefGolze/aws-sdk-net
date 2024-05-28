@@ -25,7 +25,6 @@ using System.Net;
 
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
-using Amazon.Runtime.Internal.Auth;
 
 namespace Amazon.Omics.Model
 {
@@ -41,6 +40,7 @@ namespace Amazon.Omics.Model
         private List<AnnotationImportItemSource> _items = new List<AnnotationImportItemSource>();
         private string _roleArn;
         private bool? _runLeftNormalization;
+        private string _versionName;
 
         /// <summary>
         /// Gets and sets the property AnnotationFields. 
@@ -154,12 +154,23 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
-        /// Get the signer to use for this request.
+        /// Gets and sets the property VersionName. 
+        /// <para>
+        ///  The name of the annotation store version. 
+        /// </para>
         /// </summary>
-        /// <returns>A signer for this request.</returns>
-        override protected AbstractAWSSigner CreateSigner()
+        [AWSProperty(Min=3, Max=255)]
+        public string VersionName
         {
-            return new AWS4Signer();
+            get { return this._versionName; }
+            set { this._versionName = value; }
         }
+
+        // Check to see if VersionName property is set
+        internal bool IsSetVersionName()
+        {
+            return this._versionName != null;
+        }
+
     }
 }

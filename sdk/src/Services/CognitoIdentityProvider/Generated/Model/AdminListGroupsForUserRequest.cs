@@ -32,10 +32,27 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// Container for the parameters to the AdminListGroupsForUser operation.
     /// Lists the groups that the user belongs to.
     /// 
+    ///  <note> 
+    /// <para>
+    /// Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests
+    /// for this API operation. For this operation, you must use IAM credentials to authorize
+    /// requests, and you must grant yourself the corresponding IAM permission in a policy.
+    /// </para>
     ///  
     /// <para>
-    /// Calling this action requires developer credentials.
+    ///  <b>Learn more</b> 
     /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing
+    /// Amazon Web Services API Requests</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
+    /// the Amazon Cognito user pools API and user pool endpoints</a> 
+    /// </para>
+    ///  </li> </ul> </note>
     /// </summary>
     public partial class AdminListGroupsForUserRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -70,7 +87,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// be used to return the next set of items in the list.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1)]
+        [AWSProperty(Min=1, Max=131072)]
         public string NextToken
         {
             get { return this._nextToken; }

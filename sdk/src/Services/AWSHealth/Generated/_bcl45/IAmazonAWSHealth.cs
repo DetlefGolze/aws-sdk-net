@@ -375,6 +375,36 @@ namespace Amazon.AWSHealth
 
         #endregion
         
+        #region  DescribeEntityAggregatesForOrganization
+
+
+        /// <summary>
+        /// Returns a list of entity aggregates for your Organizations that are affected by each
+        /// of the specified events.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeEntityAggregatesForOrganization service method.</param>
+        /// 
+        /// <returns>The response from the DescribeEntityAggregatesForOrganization service method, as returned by AWSHealth.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEntityAggregatesForOrganization">REST API Reference for DescribeEntityAggregatesForOrganization Operation</seealso>
+        DescribeEntityAggregatesForOrganizationResponse DescribeEntityAggregatesForOrganization(DescribeEntityAggregatesForOrganizationRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of entity aggregates for your Organizations that are affected by each
+        /// of the specified events.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeEntityAggregatesForOrganization service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeEntityAggregatesForOrganization service method, as returned by AWSHealth.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEntityAggregatesForOrganization">REST API Reference for DescribeEntityAggregatesForOrganization Operation</seealso>
+        Task<DescribeEntityAggregatesForOrganizationResponse> DescribeEntityAggregatesForOrganizationAsync(DescribeEntityAggregatesForOrganizationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DescribeEventAggregates
 
 
@@ -1116,6 +1146,17 @@ namespace Amazon.AWSHealth
         Task<EnableHealthServiceAccessForOrganizationResponse> EnableHealthServiceAccessForOrganizationAsync(EnableHealthServiceAccessForOrganizationRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

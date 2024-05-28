@@ -33,16 +33,20 @@ namespace Amazon.OAM
     /// source accounts and monitoring accounts by using <i>CloudWatch cross-account observability</i>.
     /// With CloudWatch cross-account observability, you can monitor and troubleshoot applications
     /// that span multiple accounts within a Region. Seamlessly search, visualize, and analyze
-    /// your metrics, logs, and traces in any of the linked accounts without account boundaries.
+    /// your metrics, logs, traces, and Application Insights applications in any of the linked
+    /// accounts without account boundaries.
     /// 
-    ///  <pre><code> &lt;p&gt;Set up one or more Amazon Web Services accounts as &lt;i&gt;monitoring
-    /// accounts&lt;/i&gt; and link them with multiple &lt;i&gt;source accounts&lt;/i&gt;.
-    /// A monitoring account is a central Amazon Web Services account that can view and interact
-    /// with observability data generated from source accounts. A source account is an individual
-    /// Amazon Web Services account that generates observability data for the resources that
-    /// reside in it. Source accounts share their observability data with the monitoring account.
-    /// The shared observability data can include metrics in Amazon CloudWatch, logs in Amazon
-    /// CloudWatch Logs, and traces in X-Ray.&lt;/p&gt; </code></pre>
+    ///  
+    /// <para>
+    /// Set up one or more Amazon Web Services accounts as <i>monitoring accounts</i> and
+    /// link them with multiple <i>source accounts</i>. A monitoring account is a central
+    /// Amazon Web Services account that can view and interact with observability data generated
+    /// from source accounts. A source account is an individual Amazon Web Services account
+    /// that generates observability data for the resources that reside in it. Source accounts
+    /// share their observability data with the monitoring account. The shared observability
+    /// data can include metrics in Amazon CloudWatch, logs in Amazon CloudWatch Logs, traces
+    /// in X-Ray, and applications in Amazon CloudWatch Application Insights.
+    /// </para>
     /// </summary>
     public partial interface IAmazonOAM : IAmazonService, IDisposable
     {
@@ -721,6 +725,11 @@ namespace Amazon.OAM
         /// <para>
         ///  <b>Traces</b> - Specify with <code>AWS::XRay::Trace</code> 
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Application Insights - Applications</b> - Specify with <code>AWS::ApplicationInsights::Application</code>
+        /// 
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// See the examples in this section to see how to specify permitted source accounts and
@@ -966,6 +975,17 @@ namespace Amazon.OAM
         UpdateLinkResponse EndUpdateLink(IAsyncResult asyncResult);
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

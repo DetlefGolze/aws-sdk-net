@@ -175,23 +175,51 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property CredentialSpecs. 
         /// <para>
-        /// A list of ARNs in SSM or Amazon S3 to a credential spec (<code>credspec</code>code&gt;)
-        /// file that configures a container for Active Directory authentication. This parameter
-        /// is only used with domainless authentication.
+        /// A list of ARNs in SSM or Amazon S3 to a credential spec (<code>CredSpec</code>) file
+        /// that configures the container for Active Directory authentication. We recommend that
+        /// you use this parameter instead of the <code>dockerSecurityOptions</code>. The maximum
+        /// number of ARNs is 1.
         /// </para>
         ///  
         /// <para>
-        /// The format for each ARN is <code>credentialspecdomainless:MyARN</code>. Replace <code>MyARN</code>
-        /// with the ARN in SSM or Amazon S3.
+        /// There are two formats for each ARN.
+        /// </para>
+        ///  <dl> <dt>credentialspecdomainless:MyARN</dt> <dd> 
+        /// <para>
+        /// You use <code>credentialspecdomainless:MyARN</code> to provide a <code>CredSpec</code>
+        /// with an additional section for a secret in Secrets Manager. You provide the login
+        /// credentials to the domain in the secret.
         /// </para>
         ///  
         /// <para>
-        /// The <code>credspec</code> must provide a ARN in Secrets Manager for a secret containing
-        /// the username, password, and the domain to connect to. For better security, the instance
-        /// isn't joined to the domain for domainless authentication. Other applications on the
-        /// instance can't use the domainless credentials. You can use this parameter to run tasks
-        /// on the same instance, even it the tasks need to join different domains. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html">Using
+        /// Each task that runs on any container instance can join different domains.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can use this format without joining the container instance to a domain.
+        /// </para>
+        ///  </dd> <dt>credentialspec:MyARN</dt> <dd> 
+        /// <para>
+        /// You use <code>credentialspec:MyARN</code> to provide a <code>CredSpec</code> for a
+        /// single domain.
+        /// </para>
+        ///  
+        /// <para>
+        /// You must join the container instance to the domain before you start any tasks that
+        /// use this task definition.
+        /// </para>
+        ///  </dd> </dl> 
+        /// <para>
+        /// In both formats, replace <code>MyARN</code> with the ARN in SSM or Amazon S3.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you provide a <code>credentialspecdomainless:MyARN</code>, the <code>credspec</code>
+        /// must provide a ARN in Secrets Manager for a secret containing the username, password,
+        /// and the domain to connect to. For better security, the instance isn't joined to the
+        /// domain for domainless authentication. Other applications on the instance can't use
+        /// the domainless credentials. You can use this parameter to run tasks on the same instance,
+        /// even it the tasks need to join different domains. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows-gmsa.html">Using
         /// gMSAs for Windows Containers</a> and <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/linux-gmsa.html">Using
         /// gMSAs for Linux Containers</a>.
         /// </para>
@@ -1223,6 +1251,10 @@ namespace Amazon.ECS.Model
         /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
         /// ECS-optimized Linux AMI</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
+        ///  
+        /// <para>
+        /// The valid values are 2-120 seconds.
+        /// </para>
         /// </summary>
         public int StartTimeout
         {
@@ -1279,6 +1311,10 @@ namespace Amazon.ECS.Model
         /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html">Amazon
         /// ECS-optimized Linux AMI</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
+        ///  
+        /// <para>
+        /// The valid values are 2-120 seconds.
+        /// </para>
         /// </summary>
         public int StopTimeout
         {
@@ -1299,7 +1335,8 @@ namespace Amazon.ECS.Model
         /// to <code>Sysctls</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
         /// Remote API</a> and the <code>--sysctl</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-        /// run</a>.
+        /// run</a>. For example, you can configure <code>net.ipv4.tcp_keepalive_time</code> setting
+        /// to maintain longer lived connections.
         /// </para>
         ///  <note> 
         /// <para>
@@ -1309,6 +1346,16 @@ namespace Amazon.ECS.Model
         /// mode, the container that's started last determines which <code>systemControls</code>
         /// parameters take effect. For tasks that use the <code>host</code> network mode, it
         /// changes the container instance's namespaced kernel parameters as well as the containers.
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// This parameter is not supported for Windows containers.
+        /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// This parameter is only supported for tasks that are hosted on Fargate if the tasks
+        /// are using platform version <code>1.4.0</code> or later (Linux). This isn't supported
+        /// for Windows containers on Fargate.
         /// </para>
         ///  </note>
         /// </summary>

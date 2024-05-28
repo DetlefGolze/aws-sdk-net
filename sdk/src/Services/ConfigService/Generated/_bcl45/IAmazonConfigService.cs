@@ -4863,7 +4863,9 @@ namespace Amazon.ConfigService
         /// of resources that Config is recording in this region for your Amazon Web Services
         /// account. 
         /// 
-        ///  <p class="title"> <b>Example</b> 
+        ///  
+        /// <para>
+        ///  <b>Example</b> 
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -4953,7 +4955,9 @@ namespace Amazon.ConfigService
         /// of resources that Config is recording in this region for your Amazon Web Services
         /// account. 
         /// 
-        ///  <p class="title"> <b>Example</b> 
+        ///  
+        /// <para>
+        ///  <b>Example</b> 
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -9794,6 +9798,17 @@ namespace Amazon.ConfigService
         Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

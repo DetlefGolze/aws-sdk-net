@@ -851,6 +851,56 @@ namespace Amazon.RDS
 
 
     /// <summary>
+    /// Constants used for properties of type GlobalClusterMemberSynchronizationStatus.
+    /// </summary>
+    public class GlobalClusterMemberSynchronizationStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Connected for GlobalClusterMemberSynchronizationStatus
+        /// </summary>
+        public static readonly GlobalClusterMemberSynchronizationStatus Connected = new GlobalClusterMemberSynchronizationStatus("connected");
+        /// <summary>
+        /// Constant PendingResync for GlobalClusterMemberSynchronizationStatus
+        /// </summary>
+        public static readonly GlobalClusterMemberSynchronizationStatus PendingResync = new GlobalClusterMemberSynchronizationStatus("pending-resync");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public GlobalClusterMemberSynchronizationStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static GlobalClusterMemberSynchronizationStatus FindValue(string value)
+        {
+            return FindValue<GlobalClusterMemberSynchronizationStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator GlobalClusterMemberSynchronizationStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type IAMAuthMode.
     /// </summary>
     public class IAMAuthMode : ConstantClass
@@ -898,6 +948,68 @@ namespace Amazon.RDS
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator IAMAuthMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type LocalWriteForwardingStatus.
+    /// </summary>
+    public class LocalWriteForwardingStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Disabled for LocalWriteForwardingStatus
+        /// </summary>
+        public static readonly LocalWriteForwardingStatus Disabled = new LocalWriteForwardingStatus("disabled");
+        /// <summary>
+        /// Constant Disabling for LocalWriteForwardingStatus
+        /// </summary>
+        public static readonly LocalWriteForwardingStatus Disabling = new LocalWriteForwardingStatus("disabling");
+        /// <summary>
+        /// Constant Enabled for LocalWriteForwardingStatus
+        /// </summary>
+        public static readonly LocalWriteForwardingStatus Enabled = new LocalWriteForwardingStatus("enabled");
+        /// <summary>
+        /// Constant Enabling for LocalWriteForwardingStatus
+        /// </summary>
+        public static readonly LocalWriteForwardingStatus Enabling = new LocalWriteForwardingStatus("enabling");
+        /// <summary>
+        /// Constant Requested for LocalWriteForwardingStatus
+        /// </summary>
+        public static readonly LocalWriteForwardingStatus Requested = new LocalWriteForwardingStatus("requested");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LocalWriteForwardingStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LocalWriteForwardingStatus FindValue(string value)
+        {
+            return FindValue<LocalWriteForwardingStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LocalWriteForwardingStatus(string value)
         {
             return FindValue(value);
         }

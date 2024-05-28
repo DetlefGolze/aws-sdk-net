@@ -25,7 +25,6 @@ using System.Net;
 
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
-using Amazon.Runtime.Internal.Auth;
 
 namespace Amazon.Omics.Model
 {
@@ -99,7 +98,7 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Specify the pagination token from a previous request to retrieve the next page of
+        /// Specifies the pagination token from a previous request to retrieve the next page of
         /// results.
         /// </para>
         /// </summary>
@@ -116,13 +115,5 @@ namespace Amazon.Omics.Model
             return this._nextToken != null;
         }
 
-        /// <summary>
-        /// Get the signer to use for this request.
-        /// </summary>
-        /// <returns>A signer for this request.</returns>
-        override protected AbstractAWSSigner CreateSigner()
-        {
-            return new AWS4Signer();
-        }
     }
 }

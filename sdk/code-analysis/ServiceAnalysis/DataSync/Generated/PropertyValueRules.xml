@@ -1126,6 +1126,10 @@
     <pattern>^.+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.DataSync.Model.Capacity.ClusterCloudStorageUsed</property>
+    <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.DataSync.Model.Capacity.LogicalUsed</property>
     <min>0</min>
   </property-value-rule>
@@ -1302,6 +1306,10 @@
     <min>0</min>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.DataSync.Model.NetAppONTAPCluster.ClusterCloudStorageUsed</property>
+    <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.DataSync.Model.NetAppONTAPCluster.ClusterName</property>
     <max>1024</max>
     <pattern>^.{0,1024}$</pattern>
@@ -1429,6 +1437,21 @@
     <property>Amazon.DataSync.Model.Recommendation.StorageType</property>
     <max>1024</max>
     <pattern>^.{0,1024}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.DataSync.Model.ReportDestinationS3.BucketAccessRoleArn</property>
+    <max>2048</max>
+    <pattern>^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):iam::[0-9]{12}:role/.*$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.DataSync.Model.ReportDestinationS3.S3BucketArn</property>
+    <max>156</max>
+    <pattern>^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):(s3|s3-outposts):[a-z\-0-9]*:[0-9]*:.*$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.DataSync.Model.ReportDestinationS3.Subdirectory</property>
+    <max>4096</max>
+    <pattern>^[a-zA-Z0-9_\-\+\./\(\)\p{Zs}]*$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.DataSync.Model.ResourceMetrics.ResourceId</property>

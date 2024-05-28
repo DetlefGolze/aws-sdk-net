@@ -110,6 +110,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         unmarshalledObject.AvailabilityZones.Add(item);
                         continue;
                     }
+                    if (context.TestExpression("AwsBackupRecoveryPointArn", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.AwsBackupRecoveryPointArn = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("BacktrackConsumedChangeRecords", targetDepth))
                     {
                         var unmarshaller = LongUnmarshaller.Instance;
@@ -341,6 +347,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = DateTimeUnmarshaller.Instance;
                         unmarshalledObject.LatestRestorableTime = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("LocalWriteForwardingStatus", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.LocalWriteForwardingStatus = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("MasterUsername", targetDepth))

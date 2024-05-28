@@ -36,6 +36,7 @@ namespace Amazon.SageMaker.Model
         private string _dataCapturedDestinationS3Uri;
         private MonitoringDatasetFormat _datasetFormat;
         private string _endTimeOffset;
+        private string _excludeFeaturesAttribute;
         private string _featuresAttribute;
         private string _inferenceAttribute;
         private string _localPath;
@@ -86,7 +87,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property EndTimeOffset. 
         /// <para>
-        /// If specified, monitoring jobs substract this time from the end time. For information
+        /// If specified, monitoring jobs subtract this time from the end time. For information
         /// about using offsets for scheduling monitoring jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html">Schedule
         /// Model Quality Monitoring Jobs</a>.
         /// </para>
@@ -102,6 +103,25 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetEndTimeOffset()
         {
             return this._endTimeOffset != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExcludeFeaturesAttribute. 
+        /// <para>
+        /// The attributes of the input data to exclude from the analysis.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=100)]
+        public string ExcludeFeaturesAttribute
+        {
+            get { return this._excludeFeaturesAttribute; }
+            set { this._excludeFeaturesAttribute = value; }
+        }
+
+        // Check to see if ExcludeFeaturesAttribute property is set
+        internal bool IsSetExcludeFeaturesAttribute()
+        {
+            return this._excludeFeaturesAttribute != null;
         }
 
         /// <summary>

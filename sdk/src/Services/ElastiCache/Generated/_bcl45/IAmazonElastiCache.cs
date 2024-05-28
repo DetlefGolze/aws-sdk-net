@@ -443,7 +443,9 @@ namespace Amazon.ElastiCache
         /// <para>
         /// You could receive the following error messages.
         /// </para>
-        ///  <p class="title"> <b>Error Messages</b> 
+        ///  
+        /// <para>
+        ///  <b>Error Messages</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -581,7 +583,9 @@ namespace Amazon.ElastiCache
         /// <para>
         /// You could receive the following error messages.
         /// </para>
-        ///  <p class="title"> <b>Error Messages</b> 
+        ///  
+        /// <para>
+        ///  <b>Error Messages</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5732,7 +5736,9 @@ namespace Amazon.ElastiCache
         /// overcome a problem you may have with the cluster. Moreover, in certain conditions
         /// such as large-scale operational events, Amazon may block this API. 
         /// </para>
-        ///  <p class="title"> <b>Note the following</b> 
+        ///  
+        /// <para>
+        ///  <b>Note the following</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5853,7 +5859,9 @@ namespace Amazon.ElastiCache
         /// overcome a problem you may have with the cluster. Moreover, in certain conditions
         /// such as large-scale operational events, Amazon may block this API. 
         /// </para>
-        ///  <p class="title"> <b>Note the following</b> 
+        ///  
+        /// <para>
+        ///  <b>Note the following</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -5965,5 +5973,68 @@ namespace Amazon.ElastiCache
 
         #endregion
         
+        #region  TestMigration
+
+
+        /// <summary>
+        /// Async API to test connection between source and target replication group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TestMigration service method.</param>
+        /// 
+        /// <returns>The response from the TestMigration service method, as returned by ElastiCache.</returns>
+        /// <exception cref="Amazon.ElastiCache.Model.InvalidParameterValueException">
+        /// The value for a parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.ElastiCache.Model.InvalidReplicationGroupStateException">
+        /// The requested replication group is not in the <code>available</code> state.
+        /// </exception>
+        /// <exception cref="Amazon.ElastiCache.Model.ReplicationGroupAlreadyUnderMigrationException">
+        /// The targeted replication group is not available.
+        /// </exception>
+        /// <exception cref="Amazon.ElastiCache.Model.ReplicationGroupNotFoundException">
+        /// The specified replication group does not exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestMigration">REST API Reference for TestMigration Operation</seealso>
+        TestMigrationResponse TestMigration(TestMigrationRequest request);
+
+
+
+        /// <summary>
+        /// Async API to test connection between source and target replication group.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TestMigration service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TestMigration service method, as returned by ElastiCache.</returns>
+        /// <exception cref="Amazon.ElastiCache.Model.InvalidParameterValueException">
+        /// The value for a parameter is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.ElastiCache.Model.InvalidReplicationGroupStateException">
+        /// The requested replication group is not in the <code>available</code> state.
+        /// </exception>
+        /// <exception cref="Amazon.ElastiCache.Model.ReplicationGroupAlreadyUnderMigrationException">
+        /// The targeted replication group is not available.
+        /// </exception>
+        /// <exception cref="Amazon.ElastiCache.Model.ReplicationGroupNotFoundException">
+        /// The specified replication group does not exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestMigration">REST API Reference for TestMigration Operation</seealso>
+        Task<TestMigrationResponse> TestMigrationAsync(TestMigrationRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
+        
+        #endregion
+
     }
 }

@@ -78,6 +78,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 {
                     request.Parameters.Add("AutoMinorVersionUpgrade", StringUtils.FromBool(publicRequest.AutoMinorVersionUpgrade));
                 }
+                if(publicRequest.IsSetAwsBackupRecoveryPointArn())
+                {
+                    request.Parameters.Add("AwsBackupRecoveryPointArn", StringUtils.FromString(publicRequest.AwsBackupRecoveryPointArn));
+                }
                 if(publicRequest.IsSetBacktrackWindow())
                 {
                     request.Parameters.Add("BacktrackWindow", StringUtils.FromLong(publicRequest.BacktrackWindow));
@@ -150,6 +154,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                 if(publicRequest.IsSetEnableIAMDatabaseAuthentication())
                 {
                     request.Parameters.Add("EnableIAMDatabaseAuthentication", StringUtils.FromBool(publicRequest.EnableIAMDatabaseAuthentication));
+                }
+                if(publicRequest.IsSetEnableLocalWriteForwarding())
+                {
+                    request.Parameters.Add("EnableLocalWriteForwarding", StringUtils.FromBool(publicRequest.EnableLocalWriteForwarding));
                 }
                 if(publicRequest.IsSetEnablePerformanceInsights())
                 {

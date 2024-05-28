@@ -52,6 +52,7 @@ namespace Amazon.RDS.Model
         private bool? _allowMajorVersionUpgrade;
         private bool? _applyImmediately;
         private bool? _autoMinorVersionUpgrade;
+        private string _awsBackupRecoveryPointArn;
         private long? _backtrackWindow;
         private int? _backupRetentionPeriod;
         private CloudwatchLogsExportConfiguration _cloudwatchLogsExportConfiguration;
@@ -66,6 +67,7 @@ namespace Amazon.RDS.Model
         private bool? _enableGlobalWriteForwarding;
         private bool? _enableHttpEndpoint;
         private bool? _enableIAMDatabaseAuthentication;
+        private bool? _enableLocalWriteForwarding;
         private bool? _enablePerformanceInsights;
         private string _engineMode;
         private string _engineVersion;
@@ -152,7 +154,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid for Cluster Type: Aurora DB clusters only
+        /// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
         /// </para>
         ///  
         /// <para>
@@ -233,6 +235,25 @@ namespace Amazon.RDS.Model
         internal bool IsSetAutoMinorVersionUpgrade()
         {
             return this._autoMinorVersionUpgrade.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AwsBackupRecoveryPointArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services Backup.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=43, Max=350)]
+        public string AwsBackupRecoveryPointArn
+        {
+            get { return this._awsBackupRecoveryPointArn; }
+            set { this._awsBackupRecoveryPointArn = value; }
+        }
+
+        // Check to see if AwsBackupRecoveryPointArn property is set
+        internal bool IsSetAwsBackupRecoveryPointArn()
+        {
+            return this._awsBackupRecoveryPointArn != null;
         }
 
         /// <summary>
@@ -682,6 +703,29 @@ namespace Amazon.RDS.Model
         internal bool IsSetEnableIAMDatabaseAuthentication()
         {
             return this._enableIAMDatabaseAuthentication.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnableLocalWriteForwarding. 
+        /// <para>
+        /// Specifies whether read replicas can forward write operations to the writer DB instance
+        /// in the DB cluster. By default, write operations aren't allowed on reader DB instances.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid for: Aurora DB clusters only
+        /// </para>
+        /// </summary>
+        public bool EnableLocalWriteForwarding
+        {
+            get { return this._enableLocalWriteForwarding.GetValueOrDefault(); }
+            set { this._enableLocalWriteForwarding = value; }
+        }
+
+        // Check to see if EnableLocalWriteForwarding property is set
+        internal bool IsSetEnableLocalWriteForwarding()
+        {
+            return this._enableLocalWriteForwarding.HasValue; 
         }
 
         /// <summary>

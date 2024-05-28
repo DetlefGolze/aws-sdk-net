@@ -845,8 +845,8 @@ namespace Amazon.Route53
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPSERT</code>: If a resource set exists Route 53 updates it with the values
-        /// in the request. 
+        ///  <code>UPSERT</code>: If a resource set doesn't exist, Route 53 creates it. If a resource
+        /// set exists Route 53 updates it with the values in the request. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -1003,8 +1003,8 @@ namespace Amazon.Route53
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPSERT</code>: If a resource set exists Route 53 updates it with the values
-        /// in the request. 
+        ///  <code>UPSERT</code>: If a resource set doesn't exist, Route 53 creates it. If a resource
+        /// set exists Route 53 updates it with the values in the request. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -8118,5 +8118,28 @@ namespace Amazon.Route53
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonRoute53EndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

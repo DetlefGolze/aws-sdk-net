@@ -45,6 +45,31 @@ namespace Amazon.AmplifyUIBuilder.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ReactStartCodegenJobData requestObject, JsonMarshallerContext context)
         {
+            if(requestObject.IsSetApiConfiguration())
+            {
+                context.Writer.WritePropertyName("apiConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ApiConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.ApiConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetDependencies())
+            {
+                context.Writer.WritePropertyName("dependencies");
+                context.Writer.WriteObjectStart();
+                foreach (var requestObjectDependenciesKvp in requestObject.Dependencies)
+                {
+                    context.Writer.WritePropertyName(requestObjectDependenciesKvp.Key);
+                    var requestObjectDependenciesValue = requestObjectDependenciesKvp.Value;
+
+                        context.Writer.Write(requestObjectDependenciesValue);
+                }
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetInlineSourceMap())
             {
                 context.Writer.WritePropertyName("inlineSourceMap");

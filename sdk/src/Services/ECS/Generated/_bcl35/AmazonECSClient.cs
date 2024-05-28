@@ -1881,6 +1881,12 @@ namespace Amazon.ECS
         /// <para>
         /// Currently, stopped tasks appear in the returned results for at least one hour.
         /// </para>
+        ///  
+        /// <para>
+        /// If you have tasks with tags, and then delete the cluster, the tagged tasks are returned
+        /// in the response. If you create a new cluster with the same name as the deleted cluster,
+        /// the tagged tasks are not included in the response.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTasks service method.</param>
         /// 
@@ -2849,8 +2855,7 @@ namespace Amazon.ECS
         /// 
         ///  
         /// <para>
-        /// Recently stopped tasks might appear in the returned results. Currently, stopped tasks
-        /// appear in the returned results for at least one hour.
+        /// Recently stopped tasks might appear in the returned results. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTasks service method.</param>
@@ -2935,17 +2940,17 @@ namespace Amazon.ECS
         /// </para>
         ///  
         /// <para>
-        /// When <code>serviceLongArnFormat</code>, <code>taskLongArnFormat</code>, or <code>containerInstanceLongArnFormat</code>
-        /// are specified, the Amazon Resource Name (ARN) and resource ID format of the resource
-        /// type for a specified user, role, or the root user for an account is affected. The
-        /// opt-in and opt-out account setting must be set for each Amazon ECS resource separately.
-        /// The ARN and resource ID format of a resource is defined by the opt-in status of the
-        /// user or role that created the resource. You must turn on this setting to use Amazon
-        /// ECS features such as resource tagging.
+        /// When you specify <code>serviceLongArnFormat</code>, <code>taskLongArnFormat</code>,
+        /// or <code>containerInstanceLongArnFormat</code>, the Amazon Resource Name (ARN) and
+        /// resource ID format of the resource type for a specified user, role, or the root user
+        /// for an account is affected. The opt-in and opt-out account setting must be set for
+        /// each Amazon ECS resource separately. The ARN and resource ID format of a resource
+        /// is defined by the opt-in status of the user or role that created the resource. You
+        /// must turn on this setting to use Amazon ECS features such as resource tagging.
         /// </para>
         ///  
         /// <para>
-        /// When <code>awsvpcTrunking</code> is specified, the elastic network interface (ENI)
+        /// When you specify <code>awsvpcTrunking</code>, the elastic network interface (ENI)
         /// limit for any new container instances that support the feature is changed. If <code>awsvpcTrunking</code>
         /// is turned on, any new container instances that support the feature are launched have
         /// the increased ENI limits available to them. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-instance-eni.html">Elastic
@@ -2954,7 +2959,7 @@ namespace Amazon.ECS
         /// </para>
         ///  
         /// <para>
-        /// When <code>containerInsights</code> is specified, the default setting indicating whether
+        /// When you specify <code>containerInsights</code>, the default setting indicating whether
         /// Amazon Web Services CloudWatch Container Insights is turned on for your clusters is
         /// changed. If <code>containerInsights</code> is turned on, any new clusters that are
         /// created will have Container Insights turned on unless you disable it during cluster
@@ -2970,6 +2975,15 @@ namespace Amazon.ECS
         /// you must grant explicit permissions to use the <code>ecs:TagResource</code> action.
         /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/supported-iam-actions-tagging.html">Grant
         /// permission to tag resources on creation</a> in the <i>Amazon ECS Developer Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// When Amazon Web Services determines that a security or infrastructure update is needed
+        /// for an Amazon ECS task hosted on Fargate, the tasks need to be stopped and new tasks
+        /// launched to replace them. Use <code>fargateTaskRetirementWaitPeriod</code> to configure
+        /// the wait time to retire a Fargate task. For information about the Fargate tasks maintenance,
+        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-maintenance.html">Amazon
+        /// Web Services Fargate task maintenance</a> in the <i>Amazon ECS Developer Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutAccountSetting service method.</param>
@@ -4485,22 +4499,23 @@ namespace Amazon.ECS
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// You must have a service-linked role when you update any of the following service properties.
-        /// If you specified a custom role when you created the service, Amazon ECS automatically
-        /// replaces the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Service.html#ECS-Type-Service-roleArn">roleARN</a>
-        /// associated with the service with the ARN of your service-linked role. For more information,
-        /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html">Service-linked
-        /// roles</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
+        /// You must have a service-linked role when you update any of the following service properties:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>loadBalancers,</code> 
+        ///  <code>loadBalancers</code>,
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <code>serviceRegistries</code> 
         /// </para>
-        ///  </li> </ul> </note>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about the role see the <code>CreateService</code> request parameter
+        /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html#ECS-CreateService-request-role">
+        /// <code>role</code> </a>. 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateService service method.</param>
         /// 
@@ -4884,5 +4899,28 @@ namespace Amazon.ECS
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonECSEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

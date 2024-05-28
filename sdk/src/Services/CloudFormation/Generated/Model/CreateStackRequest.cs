@@ -44,6 +44,7 @@ namespace Amazon.CloudFormation.Model
         private OnFailure _onFailure;
         private List<Parameter> _parameters = new List<Parameter>();
         private List<string> _resourceTypes = new List<string>();
+        private bool? _retainExceptOnCreate;
         private string _roleARN;
         private RollbackConfiguration _rollbackConfiguration;
         private string _stackName;
@@ -371,6 +372,30 @@ namespace Amazon.CloudFormation.Model
         internal bool IsSetResourceTypes()
         {
             return this._resourceTypes != null && this._resourceTypes.Count > 0; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RetainExceptOnCreate. 
+        /// <para>
+        /// When set to <code>true</code>, newly created resources are deleted when the operation
+        /// rolls back. This includes newly created resources marked with a deletion policy of
+        /// <code>Retain</code>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <code>false</code> 
+        /// </para>
+        /// </summary>
+        public bool RetainExceptOnCreate
+        {
+            get { return this._retainExceptOnCreate.GetValueOrDefault(); }
+            set { this._retainExceptOnCreate = value; }
+        }
+
+        // Check to see if RetainExceptOnCreate property is set
+        internal bool IsSetRetainExceptOnCreate()
+        {
+            return this._retainExceptOnCreate.HasValue; 
         }
 
         /// <summary>

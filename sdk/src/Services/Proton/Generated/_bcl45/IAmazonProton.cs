@@ -863,8 +863,9 @@ namespace Amazon.Proton
         /// Deploy a new environment. An Proton environment is created from an environment template
         /// that defines infrastructure and resources that can be shared across services.
         /// 
-        ///  <p class="title"> <b>You can provision environments using the following methods:</b>
-        /// 
+        ///  
+        /// <para>
+        ///  <b>You can provision environments using the following methods:</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -918,8 +919,9 @@ namespace Amazon.Proton
         /// Deploy a new environment. An Proton environment is created from an environment template
         /// that defines infrastructure and resources that can be shared across services.
         /// 
-        ///  <p class="title"> <b>You can provision environments using the following methods:</b>
-        /// 
+        ///  
+        /// <para>
+        ///  <b>You can provision environments using the following methods:</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -6761,6 +6763,17 @@ namespace Amazon.Proton
         Task<UpdateTemplateSyncConfigResponse> UpdateTemplateSyncConfigAsync(UpdateTemplateSyncConfigRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

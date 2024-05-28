@@ -546,6 +546,41 @@ namespace Amazon.AWSHealth
 
         #endregion
         
+        #region  DescribeEntityAggregatesForOrganization
+
+        internal virtual DescribeEntityAggregatesForOrganizationResponse DescribeEntityAggregatesForOrganization(DescribeEntityAggregatesForOrganizationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeEntityAggregatesForOrganizationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeEntityAggregatesForOrganizationResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeEntityAggregatesForOrganizationResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Returns a list of entity aggregates for your Organizations that are affected by each
+        /// of the specified events.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeEntityAggregatesForOrganization service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeEntityAggregatesForOrganization service method, as returned by AWSHealth.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEntityAggregatesForOrganization">REST API Reference for DescribeEntityAggregatesForOrganization Operation</seealso>
+        public virtual Task<DescribeEntityAggregatesForOrganizationResponse> DescribeEntityAggregatesForOrganizationAsync(DescribeEntityAggregatesForOrganizationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeEntityAggregatesForOrganizationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeEntityAggregatesForOrganizationResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DescribeEntityAggregatesForOrganizationResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DescribeEventAggregates
 
         internal virtual DescribeEventAggregatesResponse DescribeEventAggregates(DescribeEventAggregatesRequest request)
@@ -1097,5 +1132,28 @@ namespace Amazon.AWSHealth
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonAWSHealthEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

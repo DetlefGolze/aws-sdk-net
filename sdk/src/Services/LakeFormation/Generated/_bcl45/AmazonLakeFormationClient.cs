@@ -803,6 +803,83 @@ namespace Amazon.LakeFormation
 
         #endregion
         
+        #region  CreateLakeFormationOptIn
+
+
+        /// <summary>
+        /// Enforce Lake Formation permissions for the given databases, tables, and principals.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateLakeFormationOptIn service method.</param>
+        /// 
+        /// <returns>The response from the CreateLakeFormationOptIn service method, as returned by LakeFormation.</returns>
+        /// <exception cref="Amazon.LakeFormation.Model.AccessDeniedException">
+        /// Access to a resource was denied.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.ConcurrentModificationException">
+        /// Two processes are trying to modify a resource simultaneously.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.EntityNotFoundException">
+        /// A specified entity does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InternalServiceException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InvalidInputException">
+        /// The input provided was not valid.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.OperationTimeoutException">
+        /// The operation timed out.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLakeFormationOptIn">REST API Reference for CreateLakeFormationOptIn Operation</seealso>
+        public virtual CreateLakeFormationOptInResponse CreateLakeFormationOptIn(CreateLakeFormationOptInRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateLakeFormationOptInRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateLakeFormationOptInResponseUnmarshaller.Instance;
+
+            return Invoke<CreateLakeFormationOptInResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Enforce Lake Formation permissions for the given databases, tables, and principals.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateLakeFormationOptIn service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateLakeFormationOptIn service method, as returned by LakeFormation.</returns>
+        /// <exception cref="Amazon.LakeFormation.Model.AccessDeniedException">
+        /// Access to a resource was denied.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.ConcurrentModificationException">
+        /// Two processes are trying to modify a resource simultaneously.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.EntityNotFoundException">
+        /// A specified entity does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InternalServiceException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InvalidInputException">
+        /// The input provided was not valid.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.OperationTimeoutException">
+        /// The operation timed out.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLakeFormationOptIn">REST API Reference for CreateLakeFormationOptIn Operation</seealso>
+        public virtual Task<CreateLakeFormationOptInResponse> CreateLakeFormationOptInAsync(CreateLakeFormationOptInRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateLakeFormationOptInRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateLakeFormationOptInResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<CreateLakeFormationOptInResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  CreateLFTag
 
 
@@ -947,6 +1024,85 @@ namespace Amazon.LakeFormation
             options.ResponseUnmarshaller = DeleteDataCellsFilterResponseUnmarshaller.Instance;
             
             return InvokeAsync<DeleteDataCellsFilterResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  DeleteLakeFormationOptIn
+
+
+        /// <summary>
+        /// Remove the Lake Formation permissions enforcement of the given databases, tables,
+        /// and principals.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLakeFormationOptIn service method.</param>
+        /// 
+        /// <returns>The response from the DeleteLakeFormationOptIn service method, as returned by LakeFormation.</returns>
+        /// <exception cref="Amazon.LakeFormation.Model.AccessDeniedException">
+        /// Access to a resource was denied.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.ConcurrentModificationException">
+        /// Two processes are trying to modify a resource simultaneously.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.EntityNotFoundException">
+        /// A specified entity does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InternalServiceException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InvalidInputException">
+        /// The input provided was not valid.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.OperationTimeoutException">
+        /// The operation timed out.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLakeFormationOptIn">REST API Reference for DeleteLakeFormationOptIn Operation</seealso>
+        public virtual DeleteLakeFormationOptInResponse DeleteLakeFormationOptIn(DeleteLakeFormationOptInRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteLakeFormationOptInRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteLakeFormationOptInResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteLakeFormationOptInResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Remove the Lake Formation permissions enforcement of the given databases, tables,
+        /// and principals.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteLakeFormationOptIn service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteLakeFormationOptIn service method, as returned by LakeFormation.</returns>
+        /// <exception cref="Amazon.LakeFormation.Model.AccessDeniedException">
+        /// Access to a resource was denied.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.ConcurrentModificationException">
+        /// Two processes are trying to modify a resource simultaneously.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.EntityNotFoundException">
+        /// A specified entity does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InternalServiceException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InvalidInputException">
+        /// The input provided was not valid.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.OperationTimeoutException">
+        /// The operation timed out.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLakeFormationOptIn">REST API Reference for DeleteLakeFormationOptIn Operation</seealso>
+        public virtual Task<DeleteLakeFormationOptInResponse> DeleteLakeFormationOptInAsync(DeleteLakeFormationOptInRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteLakeFormationOptInRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteLakeFormationOptInResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DeleteLakeFormationOptInResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -2485,6 +2641,73 @@ namespace Amazon.LakeFormation
 
         #endregion
         
+        #region  ListLakeFormationOptIns
+
+
+        /// <summary>
+        /// Retrieve the current list of resources and principals that are opt in to enforce Lake
+        /// Formation permissions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLakeFormationOptIns service method.</param>
+        /// 
+        /// <returns>The response from the ListLakeFormationOptIns service method, as returned by LakeFormation.</returns>
+        /// <exception cref="Amazon.LakeFormation.Model.AccessDeniedException">
+        /// Access to a resource was denied.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InternalServiceException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InvalidInputException">
+        /// The input provided was not valid.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.OperationTimeoutException">
+        /// The operation timed out.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLakeFormationOptIns">REST API Reference for ListLakeFormationOptIns Operation</seealso>
+        public virtual ListLakeFormationOptInsResponse ListLakeFormationOptIns(ListLakeFormationOptInsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListLakeFormationOptInsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListLakeFormationOptInsResponseUnmarshaller.Instance;
+
+            return Invoke<ListLakeFormationOptInsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Retrieve the current list of resources and principals that are opt in to enforce Lake
+        /// Formation permissions.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListLakeFormationOptIns service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListLakeFormationOptIns service method, as returned by LakeFormation.</returns>
+        /// <exception cref="Amazon.LakeFormation.Model.AccessDeniedException">
+        /// Access to a resource was denied.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InternalServiceException">
+        /// An internal service error occurred.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.InvalidInputException">
+        /// The input provided was not valid.
+        /// </exception>
+        /// <exception cref="Amazon.LakeFormation.Model.OperationTimeoutException">
+        /// The operation timed out.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLakeFormationOptIns">REST API Reference for ListLakeFormationOptIns Operation</seealso>
+        public virtual Task<ListLakeFormationOptInsResponse> ListLakeFormationOptInsAsync(ListLakeFormationOptInsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListLakeFormationOptInsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListLakeFormationOptInsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListLakeFormationOptInsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ListLFTags
 
 
@@ -3889,5 +4112,28 @@ namespace Amazon.LakeFormation
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonLakeFormationEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

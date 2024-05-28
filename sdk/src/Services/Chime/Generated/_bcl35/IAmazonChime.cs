@@ -9423,7 +9423,9 @@ namespace Amazon.Chime
         /// Lists all Channels created under a single Chime App as a paginated list. You can specify
         /// filters to narrow results.
         /// 
-        ///  <p class="title"> <b>Functionality &amp; restrictions</b> 
+        ///  
+        /// <para>
+        ///  <b>Functionality &amp; restrictions</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -14533,6 +14535,17 @@ namespace Amazon.Chime
         ValidateE911AddressResponse EndValidateE911Address(IAsyncResult asyncResult);
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

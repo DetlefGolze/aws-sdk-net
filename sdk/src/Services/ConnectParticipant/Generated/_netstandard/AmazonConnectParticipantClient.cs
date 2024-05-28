@@ -438,6 +438,55 @@ namespace Amazon.ConnectParticipant
 
         #endregion
         
+        #region  DescribeView
+
+        internal virtual DescribeViewResponse DescribeView(DescribeViewRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeViewRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeViewResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeViewResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves the view for the specified view token.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeView service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeView service method, as returned by ConnectParticipant.</returns>
+        /// <exception cref="Amazon.ConnectParticipant.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectParticipant.Model.InternalServerException">
+        /// This exception occurs when there is an internal failure in the Amazon Connect service.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectParticipant.Model.ResourceNotFoundException">
+        /// The resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectParticipant.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.ConnectParticipant.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by Amazon Connect.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/DescribeView">REST API Reference for DescribeView Operation</seealso>
+        public virtual Task<DescribeViewResponse> DescribeViewAsync(DescribeViewRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeViewRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeViewResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DescribeViewResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DisconnectParticipant
 
         internal virtual DisconnectParticipantResponse DisconnectParticipant(DisconnectParticipantRequest request)
@@ -782,5 +831,28 @@ namespace Amazon.ConnectParticipant
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonConnectParticipantEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

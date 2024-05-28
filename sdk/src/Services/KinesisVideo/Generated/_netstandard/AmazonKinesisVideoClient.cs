@@ -846,8 +846,16 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
+        /// <important> 
+        /// <para>
+        /// This API is related to <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html">WebRTC
+        /// Ingestion</a> and is only available in the <code>us-west-2</code> region.
+        /// </para>
+        ///  </important> 
+        /// <para>
         /// Returns the most current information about the channel. Specify the <code>ChannelName</code>
         /// or <code>ChannelARN</code> in the input.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeMediaStorageConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -1443,6 +1451,12 @@ namespace Amazon.KinesisVideo
         /// of the stream’s edge configuration and the Edge Agent will be retried for 15 minutes.
         /// After 15 minutes, the status will transition into the <code>SYNC_FAILED</code> state.
         /// </para>
+        ///  
+        /// <para>
+        /// To move an edge configuration from one device to another, use <a>DeleteEdgeConfiguration</a>
+        /// to delete the current edge configuration. You can then invoke StartEdgeConfigurationUpdate
+        /// with an updated Hub Device ARN.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartEdgeConfigurationUpdate service method.</param>
         /// <param name="cancellationToken">
@@ -1929,9 +1943,16 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
+        /// <important> 
+        /// <para>
+        /// This API is related to <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html">WebRTC
+        /// Ingestion</a> and is only available in the <code>us-west-2</code> region.
+        /// </para>
+        ///  </important> 
+        /// <para>
         /// Associates a <code>SignalingChannel</code> to a stream to store the media. There are
         /// two signaling modes that can specified :
-        /// 
+        /// </para>
         ///  <ul> <li> 
         /// <para>
         /// If the <code>StorageStatus</code> is disabled, no data will be stored, and the <code>StreamARN</code>
@@ -1942,7 +1963,14 @@ namespace Amazon.KinesisVideo
         /// If the <code>StorageStatus</code> is enabled, the data will be stored in the <code>StreamARN</code>
         /// provided. 
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <important> 
+        /// <para>
+        /// If <code>StorageStatus</code> is enabled, direct peer-to-peer (master-viewer) connections
+        /// no longer occur. Peers connect directly to the storage session. You must call the
+        /// <code>JoinStorageSession</code> API to trigger an SDP offer send and establish a connection
+        /// between a peer and the storage session. 
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateMediaStorageConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -2248,5 +2276,28 @@ namespace Amazon.KinesisVideo
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonKinesisVideoEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

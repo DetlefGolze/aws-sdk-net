@@ -1230,6 +1230,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InvalidNextTokenException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ],
@@ -1248,6 +1249,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InvalidNextTokenException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ],
@@ -2442,7 +2444,7 @@
         {"shape":"UnsupportedPricingPlanException"},
         {"shape":"InternalFailureException"}
       ],
-      "documentation":"<p>Starts an asynchronous job that generates a dashboard snapshot. You can request up to one paginated PDF and up to five CSVs per API call.</p> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>"
+      "documentation":"<p>Starts an asynchronous job that generates a dashboard snapshot. You can request one of the following format configurations per API call.</p> <ul> <li> <p>1 paginated PDF</p> </li> <li> <p>1 Excel workbook</p> </li> <li> <p>5 CSVs</p> </li> </ul> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>"
     },
     "TagResource":{
       "name":"TagResource",
@@ -2460,7 +2462,7 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
       ],
-      "documentation":"<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, and topic. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>"
+      "documentation":"<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, topic, and user. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>Tags are used to track costs for users in Amazon QuickSight. You can't tag other resources that Amazon QuickSight costs are based on, such as storage capacoty (SPICE), session usage, alert consumption, or reporting units.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>"
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -3081,9 +3083,19 @@
         "AccountSubscriptionStatus":{
           "shape":"String",
           "documentation":"<p>The status of your account subscription.</p>"
+        },
+        "IAMIdentityCenterInstanceArn":{
+          "shape":"String",
+          "documentation":"<p>The Amazon Resource Name (ARN) for the IAM Identity Center instance.</p>"
         }
       },
       "documentation":"<p>A structure that contains the following account information elements:</p> <ul> <li> <p>Your Amazon QuickSight account name.</p> </li> <li> <p>The edition of Amazon QuickSight that your account is using.</p> </li> <li> <p>The notification email address that is associated with the Amazon QuickSight account. </p> </li> <li> <p>The authentication type of the Amazon QuickSight account.</p> </li> <li> <p>The status of the Amazon QuickSight account's subscription.</p> </li> </ul>"
+    },
+    "AccountName":{
+      "type":"string",
+      "max":62,
+      "min":1,
+      "pattern":"^(?!D-|d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
     },
     "AccountSettings":{
       "type":"structure",
@@ -3118,7 +3130,7 @@
     "ActionList":{
       "type":"list",
       "member":{"shape":"String"},
-      "max":16,
+      "max":20,
       "min":1
     },
     "ActiveIAMPolicyAssignment":{
@@ -3214,6 +3226,12 @@
       "max":2048,
       "min":1,
       "pattern":"[\\w\\-]+|(\\$LATEST)|(\\$PUBLISHED)"
+    },
+    "AllSheetsFilterScopeConfiguration":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p>The configuration for applying a filter to all sheets. You can apply this filter to all visuals on every sheet.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>"
     },
     "AmazonElasticsearchParameters":{
       "type":"structure",
@@ -4443,7 +4461,8 @@
       "enum":[
         "IAM_AND_QUICKSIGHT",
         "IAM_ONLY",
-        "ACTIVE_DIRECTORY"
+        "ACTIVE_DIRECTORY",
+        "IAM_IDENTITY_CENTER"
       ]
     },
     "AuthorSpecifiedAggregation":{
@@ -6451,7 +6470,7 @@
           "locationName":"AwsAccountId"
         },
         "AccountName":{
-          "shape":"String",
+          "shape":"AccountName",
           "documentation":"<p>The name of your Amazon QuickSight account. This name is unique over all of Amazon Web Services, and it appears only when users sign in. You can't change <code>AccountName</code> value after the Amazon QuickSight account is created.</p>"
         },
         "NotificationEmail":{
@@ -6565,6 +6584,10 @@
         "Definition":{
           "shape":"AnalysisDefinition",
           "documentation":"<p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>"
+        },
+        "ValidationStrategy":{
+          "shape":"ValidationStrategy",
+          "documentation":"<p>The option to relax the validation needed to create an analysis with definition objects. This skips the validation step for specific errors.</p>"
         }
       }
     },
@@ -6660,6 +6683,10 @@
         "Definition":{
           "shape":"DashboardVersionDefinition",
           "documentation":"<p>The definition of a dashboard.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>"
+        },
+        "ValidationStrategy":{
+          "shape":"ValidationStrategy",
+          "documentation":"<p>The option to relax the validation needed to create a dashboard with definition objects. This option skips the validation step for specific errors.</p>"
         }
       }
     },
@@ -6896,13 +6923,13 @@
         },
         "MemberId":{
           "shape":"RestrictiveResourceId",
-          "documentation":"<p>The ID of the asset (the dashboard, analysis, or dataset).</p>",
+          "documentation":"<p>The ID of the asset that you want to add to the folder.</p>",
           "location":"uri",
           "locationName":"MemberId"
         },
         "MemberType":{
           "shape":"MemberType",
-          "documentation":"<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>.</p>",
+          "documentation":"<p>The member type of the asset that you want to add to a folder.</p>",
           "location":"uri",
           "locationName":"MemberType"
         }
@@ -6963,6 +6990,10 @@
         "Tags":{
           "shape":"TagList",
           "documentation":"<p>Tags for the folder.</p>"
+        },
+        "SharingModel":{
+          "shape":"SharingModel",
+          "documentation":"<p>An optional parameter that determines the sharing scope of the folder. The default value for this parameter is <code>ACCOUNT</code>.</p>"
         }
       }
     },
@@ -7425,6 +7456,10 @@
         "Definition":{
           "shape":"TemplateVersionDefinition",
           "documentation":"<p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p> <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in order for the request to be valid.</p>"
+        },
+        "ValidationStrategy":{
+          "shape":"ValidationStrategy",
+          "documentation":"<p>TThe option to relax the validation needed to create a template with definition objects. This skips the validation step for specific errors.</p>"
         }
       }
     },
@@ -9453,6 +9488,22 @@
       "max":128,
       "min":1
     },
+    "DatabaseGroup":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "DatabaseGroupList":{
+      "type":"list",
+      "member":{"shape":"DatabaseGroup"},
+      "max":50,
+      "min":1
+    },
+    "DatabaseUser":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "DatabricksParameters":{
       "type":"structure",
       "required":[
@@ -10010,7 +10061,12 @@
         "MIN",
         "COUNT",
         "DISTINCT_COUNT",
-        "AVERAGE"
+        "AVERAGE",
+        "MEDIAN",
+        "STDEV",
+        "STDEVP",
+        "VAR",
+        "VARP"
       ]
     },
     "DefaultFormatting":{
@@ -10412,13 +10468,13 @@
         },
         "MemberId":{
           "shape":"RestrictiveResourceId",
-          "documentation":"<p>The ID of the asset (the dashboard, analysis, or dataset) that you want to delete.</p>",
+          "documentation":"<p>The ID of the asset that you want to delete.</p>",
           "location":"uri",
           "locationName":"MemberId"
         },
         "MemberType":{
           "shape":"MemberType",
-          "documentation":"<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code> </p>",
+          "documentation":"<p>The member type of the asset that you want to delete from a folder.</p>",
           "location":"uri",
           "locationName":"MemberType"
         }
@@ -12108,6 +12164,25 @@
           "documentation":"<p>The ID of the folder.</p>",
           "location":"uri",
           "locationName":"FolderId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "documentation":"<p>The namespace of the folder whose permissions you want described.</p>",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to be returned per request.</p>",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"<p>A pagination token for the next set of results.</p>",
+          "location":"querystring",
+          "locationName":"next-token"
         }
       }
     },
@@ -12134,6 +12209,10 @@
         "RequestId":{
           "shape":"String",
           "documentation":"<p>The Amazon Web Services request ID for this operation.</p>"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"<p>The pagination token for the next set of results, or null if there are no more results.</p>"
         }
       }
     },
@@ -12176,6 +12255,25 @@
           "documentation":"<p>The ID of the folder.</p>",
           "location":"uri",
           "locationName":"FolderId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "documentation":"<p>The namespace of the folder whose permissions you want described.</p>",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to be returned per request.</p>",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"<p>A pagination token for the next set of results.</p>",
+          "location":"querystring",
+          "locationName":"next-token"
         }
       }
     },
@@ -12202,6 +12300,10 @@
         "RequestId":{
           "shape":"String",
           "documentation":"<p>The Amazon Web Services request ID for this operation.</p>"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"<p>A pagination token for the next set of results, or null if there are no more results.</p>"
         }
       }
     },
@@ -13666,7 +13768,7 @@
     "FieldOrderList":{
       "type":"list",
       "member":{"shape":"FieldId"},
-      "max":100
+      "max":200
     },
     "FieldSeriesItem":{
       "type":"structure",
@@ -14121,6 +14223,10 @@
         "SelectAllOptions":{
           "shape":"CategoryFilterSelectAllOptions",
           "documentation":"<p>Select all of the values. Null is not the assigned value of select all.</p> <ul> <li> <p> <code>FILTER_ALL_VALUES</code> </p> </li> </ul>"
+        },
+        "NullOption":{
+          "shape":"FilterNullOption",
+          "documentation":"<p>This option determines how null values should be treated when filtering data.</p> <ul> <li> <p> <code>ALL_VALUES</code>: Include null values in filtered results.</p> </li> <li> <p> <code>NULLS_ONLY</code>: Only include null values in filtered results.</p> </li> <li> <p> <code>NON_NULLS_ONLY</code>: Exclude null values from filtered results.</p> </li> </ul>"
         }
       },
       "documentation":"<p>A list of filter configurations.</p>"
@@ -14251,6 +14357,10 @@
         "SelectedSheets":{
           "shape":"SelectedSheetsFilterScopeConfiguration",
           "documentation":"<p>The configuration for applying a filter to specific sheets.</p>"
+        },
+        "AllSheets":{
+          "shape":"AllSheetsFilterScopeConfiguration",
+          "documentation":"<p>The configuration for applying a filter to all sheets.</p>"
         }
       },
       "documentation":"<p>The scope configuration for a <code>FilterGroup</code>.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>"
@@ -14411,6 +14521,10 @@
         "LastUpdatedTime":{
           "shape":"Timestamp",
           "documentation":"<p>The time that the folder was last updated.</p>"
+        },
+        "SharingModel":{
+          "shape":"SharingModel",
+          "documentation":"<p>The sharing scope of the folder.</p>"
         }
       },
       "documentation":"<p>A folder in Amazon QuickSight.</p>"
@@ -14505,6 +14619,10 @@
         "LastUpdatedTime":{
           "shape":"Timestamp",
           "documentation":"<p>The time that the folder was last updated.</p>"
+        },
+        "SharingModel":{
+          "shape":"SharingModel",
+          "documentation":"<p>The sharing scope of the folder.</p>"
         }
       },
       "documentation":"<p>A summary of information about an existing Amazon QuickSight folder. </p>"
@@ -14602,10 +14720,7 @@
     },
     "ForecastComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -15922,10 +16037,7 @@
     },
     "GrowthRateComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -16380,7 +16492,8 @@
       "type":"string",
       "enum":[
         "IAM",
-        "QUICKSIGHT"
+        "QUICKSIGHT",
+        "IAM_IDENTITY_CENTER"
       ]
     },
     "IdentityTypeNotSupportedException":{
@@ -16925,6 +17038,34 @@
         "RIGHT"
       ]
     },
+    "KPIActualValueConditionalFormatting":{
+      "type":"structure",
+      "members":{
+        "TextColor":{
+          "shape":"ConditionalFormattingColor",
+          "documentation":"<p>The conditional formatting of the actual value's text color.</p>"
+        },
+        "Icon":{
+          "shape":"ConditionalFormattingIcon",
+          "documentation":"<p>The conditional formatting of the actual value's icon.</p>"
+        }
+      },
+      "documentation":"<p>The conditional formatting for the actual value of a KPI visual.</p>"
+    },
+    "KPIComparisonValueConditionalFormatting":{
+      "type":"structure",
+      "members":{
+        "TextColor":{
+          "shape":"ConditionalFormattingColor",
+          "documentation":"<p>The conditional formatting of the comparison value's text color.</p>"
+        },
+        "Icon":{
+          "shape":"ConditionalFormattingIcon",
+          "documentation":"<p>The conditional formatting of the comparison value's icon.</p>"
+        }
+      },
+      "documentation":"<p>The conditional formatting for the comparison value of a KPI visual.</p>"
+    },
     "KPIConditionalFormatting":{
       "type":"structure",
       "members":{
@@ -16945,6 +17086,14 @@
         "ProgressBar":{
           "shape":"KPIProgressBarConditionalFormatting",
           "documentation":"<p>The conditional formatting for the progress bar of a KPI visual.</p>"
+        },
+        "ActualValue":{
+          "shape":"KPIActualValueConditionalFormatting",
+          "documentation":"<p>The conditional formatting for the actual value of a KPI visual.</p>"
+        },
+        "ComparisonValue":{
+          "shape":"KPIComparisonValueConditionalFormatting",
+          "documentation":"<p>The conditional formatting for the comparison value of a KPI visual.</p>"
         }
       },
       "documentation":"<p>The conditional formatting options of a KPI visual.</p>"
@@ -17020,6 +17169,14 @@
         "SecondaryValueFontConfiguration":{
           "shape":"FontConfiguration",
           "documentation":"<p>The options that determine the secondary value font configuration.</p>"
+        },
+        "Sparkline":{
+          "shape":"KPISparklineOptions",
+          "documentation":"<p>The options that determine the visibility, color, type, and tooltip visibility of the sparkline of a KPI visual.</p>"
+        },
+        "VisualLayoutOptions":{
+          "shape":"KPIVisualLayoutOptions",
+          "documentation":"<p>The options that determine the layout a KPI visual.</p>"
         }
       },
       "documentation":"<p>The options that determine the presentation of a KPI visual.</p>"
@@ -17058,6 +17215,36 @@
       },
       "documentation":"<p>The sort configuration of a KPI visual.</p>"
     },
+    "KPISparklineOptions":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Visibility":{
+          "shape":"Visibility",
+          "documentation":"<p>The visibility of the sparkline.</p>"
+        },
+        "Type":{
+          "shape":"KPISparklineType",
+          "documentation":"<p>The type of the sparkline.</p>"
+        },
+        "Color":{
+          "shape":"HexColor",
+          "documentation":"<p>The color of the sparkline.</p>"
+        },
+        "TooltipVisibility":{
+          "shape":"Visibility",
+          "documentation":"<p>The tooltip visibility of the sparkline.</p>"
+        }
+      },
+      "documentation":"<p>The options that determine the visibility, color, type, and tooltip visibility of the sparkline of a KPI visual.</p>"
+    },
+    "KPISparklineType":{
+      "type":"string",
+      "enum":[
+        "LINE",
+        "AREA"
+      ]
+    },
     "KPIVisual":{
       "type":"structure",
       "required":["VisualId"],
@@ -17092,6 +17279,34 @@
         }
       },
       "documentation":"<p>A key performance indicator (KPI).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/kpi.html\">Using KPIs</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
+    },
+    "KPIVisualLayoutOptions":{
+      "type":"structure",
+      "members":{
+        "StandardLayout":{
+          "shape":"KPIVisualStandardLayout",
+          "documentation":"<p>The standard layout of the KPI visual.</p>"
+        }
+      },
+      "documentation":"<p>The options that determine the layout a KPI visual.</p>"
+    },
+    "KPIVisualStandardLayout":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{
+          "shape":"KPIVisualStandardLayoutType",
+          "documentation":"<p>The standard layout type.</p>"
+        }
+      },
+      "documentation":"<p>The standard layout of the KPI visual.</p>"
+    },
+    "KPIVisualStandardLayoutType":{
+      "type":"string",
+      "enum":[
+        "CLASSIC",
+        "VERTICAL"
+      ]
     },
     "LabelOptions":{
       "type":"structure",
@@ -19252,7 +19467,6 @@
       "type":"structure",
       "required":[
         "ComputationId",
-        "Time",
         "Type"
       ],
       "members":{
@@ -19332,17 +19546,14 @@
       "enum":[
         "DASHBOARD",
         "ANALYSIS",
-        "DATASET"
+        "DATASET",
+        "DATASOURCE",
+        "TOPIC"
       ]
     },
     "MetricComparisonComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time",
-        "FromValue",
-        "TargetValue"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -20619,10 +20830,7 @@
     },
     "PeriodOverPeriodComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -20645,10 +20853,7 @@
     },
     "PeriodToDateComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Time"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -21173,6 +21378,18 @@
         "CollapsedRowDimensionsVisibility":{
           "shape":"Visibility",
           "documentation":"<p>The visibility setting of a pivot table's collapsed row dimension fields. If the value of this structure is <code>HIDDEN</code>, all collapsed columns in a pivot table are automatically hidden. The default value is <code>VISIBLE</code>.</p>"
+        },
+        "RowsLayout":{
+          "shape":"PivotTableRowsLayout",
+          "documentation":"<p>The layout for the row dimension headers of a pivot table. Choose one of the following options.</p> <ul> <li> <p> <code>TABULAR</code>: (Default) Each row field is displayed in a separate column.</p> </li> <li> <p> <code>HIERARCHY</code>: All row fields are displayed in a single column. Indentation is used to differentiate row headers of different fields.</p> </li> </ul>"
+        },
+        "RowsLabelOptions":{
+          "shape":"PivotTableRowsLabelOptions",
+          "documentation":"<p>The options for the label that is located above the row headers. This option is only applicable when <code>RowsLayout</code> is set to <code>HIERARCHY</code>.</p>"
+        },
+        "DefaultCellWidth":{
+          "shape":"PixelLength",
+          "documentation":"<p>The default cell width of the pivot table.</p>"
         }
       },
       "documentation":"<p>The table options for a pivot table visual.</p>"
@@ -21190,6 +21407,32 @@
         }
       },
       "documentation":"<p>The paginated report options for a pivot table visual.</p>"
+    },
+    "PivotTableRowsLabelOptions":{
+      "type":"structure",
+      "members":{
+        "Visibility":{
+          "shape":"Visibility",
+          "documentation":"<p>The visibility of the rows label.</p>"
+        },
+        "CustomLabel":{
+          "shape":"PivotTableRowsLabelText",
+          "documentation":"<p>The custom label string for the rows label.</p>"
+        }
+      },
+      "documentation":"<p>The options for the label thta is located above the row headers. This option is only applicable when <code>RowsLayout</code> is set to <code>HIERARCHY</code>.</p>"
+    },
+    "PivotTableRowsLabelText":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "PivotTableRowsLayout":{
+      "type":"string",
+      "enum":[
+        "TABULAR",
+        "HIERARCHY"
+      ]
     },
     "PivotTableSortBy":{
       "type":"structure",
@@ -21815,6 +22058,32 @@
       "max":30,
       "min":7
     },
+    "RedshiftIAMParameters":{
+      "type":"structure",
+      "required":[
+        "RoleArn",
+        "DatabaseUser"
+      ],
+      "members":{
+        "RoleArn":{
+          "shape":"RoleArn",
+          "documentation":"<p>Use the <code>RoleArn</code> structure to allow Amazon QuickSight to call <code>redshift:GetClusterCredentials</code> on your cluster. The calling principal must have <code>iam:PassRole</code> access to pass the role to Amazon QuickSight. The role's trust policy must allow the Amazon QuickSight service principal to assume the role.</p>"
+        },
+        "DatabaseUser":{
+          "shape":"DatabaseUser",
+          "documentation":"<p>The user whose permissions and group memberships will be used by Amazon QuickSight to access the cluster. If this user already exists in your database, Amazon QuickSight is granted the same permissions that the user has. If the user doesn't exist, set the value of <code>AutoCreateDatabaseUser</code> to <code>True</code> to create a new user with PUBLIC permissions.</p>"
+        },
+        "DatabaseGroups":{
+          "shape":"DatabaseGroupList",
+          "documentation":"<p>A list of groups whose permissions will be granted to Amazon QuickSight to access the cluster. These permissions are combined with the permissions granted to Amazon QuickSight by the <code>DatabaseUser</code>. If you choose to include this parameter, the <code>RoleArn</code> must grant access to <code>redshift:JoinGroup</code>.</p>"
+        },
+        "AutoCreateDatabaseUser":{
+          "shape":"Boolean",
+          "documentation":"<p>Automatically creates a database user. If your database doesn't have a <code>DatabaseUser</code>, set this parameter to <code>True</code>. If there is no <code>DatabaseUser</code>, Amazon QuickSight can't connect to your cluster. The <code>RoleArn</code> that you use for this operation must grant access to <code>redshift:CreateClusterUser</code> to successfully create the user.</p>"
+        }
+      },
+      "documentation":"<p>A structure that grants Amazon QuickSight access to your cluster and make a call to the <code>redshift:GetClusterCredentials</code> API. For more information on the <code>redshift:GetClusterCredentials</code> API, see <a href=\"https://docs.aws.amazon.com/redshift/latest/APIReference/API_GetClusterCredentials.html\"> <code>GetClusterCredentials</code> </a>.</p>"
+    },
     "RedshiftParameters":{
       "type":"structure",
       "required":["Database"],
@@ -21834,6 +22103,10 @@
         "ClusterId":{
           "shape":"ClusterId",
           "documentation":"<p>Cluster ID. This field can be blank if the <code>Host</code> and <code>Port</code> are provided.</p>"
+        },
+        "IAMParameters":{
+          "shape":"RedshiftIAMParameters",
+          "documentation":"<p>An optional parameter that uses IAM authentication to grant Amazon QuickSight access to your cluster. This parameter can be used instead of <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DataSourceCredentials.html\">DataSourceCredentials</a>.</p>"
         }
       },
       "documentation":"<p>The parameters for Amazon Redshift. The <code>ClusterId</code> field can be blank if <code>Host</code> and <code>Port</code> are both set. The <code>Host</code> and <code>Port</code> fields can be blank if the <code>ClusterId</code> field is set.</p>"
@@ -22160,6 +22433,10 @@
         "ExternalLoginId":{
           "shape":"String",
           "documentation":"<p>The identity ID for a user in the external login provider.</p>"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "documentation":"<p>The tags to associate with the user.</p>"
         }
       }
     },
@@ -22318,12 +22595,12 @@
     },
     "RelationalTableName":{
       "type":"string",
-      "max":64,
+      "max":256,
       "min":1
     },
     "RelationalTableSchema":{
       "type":"string",
-      "max":64
+      "max":256
     },
     "RelativeDateTimeControlDisplayOptions":{
       "type":"structure",
@@ -22632,6 +22909,10 @@
         "RowAlternateColors":{
           "shape":"RowAlternateColorList",
           "documentation":"<p>Determines the list of row alternate colors.</p>"
+        },
+        "UsePrimaryBackgroundColor":{
+          "shape":"WidgetStatus",
+          "documentation":"<p>The primary background color options for alternate rows.</p>"
         }
       },
       "documentation":"<p>Determines the row alternate color options.</p>"
@@ -23824,6 +24105,13 @@
       },
       "documentation":"<p>The shape conditional formatting of a filled map visual.</p>"
     },
+    "SharingModel":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT",
+        "NAMESPACE"
+      ]
+    },
     "Sheet":{
       "type":"structure",
       "members":{
@@ -24339,11 +24627,11 @@
       "members":{
         "SheetSelections":{
           "shape":"SnapshotFileSheetSelectionList",
-          "documentation":"<p>A list of <code>SnapshotFileSheetSelection</code> objects that contain information on the dashboard sheet that is exported. These objects provide information about the snapshot artifacts that are generated during the job. This structure can hold a maximum of 5 CSV configurations or 1 configuration for PDF.</p>"
+          "documentation":"<p>A list of <code>SnapshotFileSheetSelection</code> objects that contain information on the dashboard sheet that is exported. These objects provide information about the snapshot artifacts that are generated during the job. This structure can hold a maximum of 5 CSV configurations, 5 Excel configurations, or 1 configuration for PDF.</p>"
         },
         "FormatType":{
           "shape":"SnapshotFileFormatType",
-          "documentation":"<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code> and <code>PDF</code>.</p>"
+          "documentation":"<p>The format of the snapshot file to be generated. You can choose between <code>CSV</code>, <code>Excel</code>, or <code>PDF</code>.</p>"
         }
       },
       "documentation":"<p>A structure that contains the information for the snapshot that you want to generate. This information is provided by you when you start a new snapshot job.</p>"
@@ -24352,7 +24640,8 @@
       "type":"string",
       "enum":[
         "CSV",
-        "PDF"
+        "PDF",
+        "EXCEL"
       ]
     },
     "SnapshotFileGroup":{
@@ -24368,7 +24657,7 @@
     "SnapshotFileGroupList":{
       "type":"list",
       "member":{"shape":"SnapshotFileGroup"},
-      "max":6,
+      "max":7,
       "min":1
     },
     "SnapshotFileList":{
@@ -24386,15 +24675,15 @@
       "members":{
         "SheetId":{
           "shape":"ShortRestrictiveResourceId",
-          "documentation":"<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV or PDF format types.</p>"
+          "documentation":"<p>The sheet ID of the dashboard to generate the snapshot artifact from. This value is required for CSV, Excel, and PDF format types.</p>"
         },
         "SelectionScope":{
           "shape":"SnapshotFileSheetSelectionScope",
-          "documentation":"<p>The selection scope of the visuals on a sheet of a dashboard that you are generating a snapthot of. You can choose one of the following options.</p> <ul> <li> <p> <code>ALL_VISUALS</code> - Selects all visuals that are on the sheet. This value is required if the snapshot is a PDF.</p> </li> <li> <p> <code>SELECTED_VISUALS</code> - Select the visual that you want to add to the snapshot. This value is required if the snapshot is a CSV.</p> </li> </ul>"
+          "documentation":"<p>The selection scope of the visuals on a sheet of a dashboard that you are generating a snapthot of. You can choose one of the following options.</p> <ul> <li> <p> <code>ALL_VISUALS</code> - Selects all visuals that are on the sheet. This value is required if the snapshot is a PDF.</p> </li> <li> <p> <code>SELECTED_VISUALS</code> - Select the visual that you want to add to the snapshot. This value is required if the snapshot is a CSV or Excel workbook.</p> </li> </ul>"
         },
         "VisualIds":{
           "shape":"SnapshotFileSheetSelectionVisualIdList",
-          "documentation":"<p> A structure that lists the IDs of the visuals in the selected sheet. Supported visual types are table, pivot table visuals. This value is required if you are generating a CSV. This value supports a maximum of 1 visual ID. </p>"
+          "documentation":"<p> A structure that lists the IDs of the visuals in the selected sheet. Supported visual types are table, pivot table visuals. This value is required if you are generating a CSV or Excel workbook. This value supports a maximum of 1 visual ID for CSV and 5 visual IDs across up to 5 sheet selections for Excel. If you are generating an Excel workbook, the order of the visual IDs provided in this structure determines the order of the worksheets in the Excel file. </p>"
         }
       },
       "documentation":"<p>A structure that contains information that identifies the snapshot that needs to be generated.</p>"
@@ -24402,7 +24691,7 @@
     "SnapshotFileSheetSelectionList":{
       "type":"list",
       "member":{"shape":"SnapshotFileSheetSelection"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "SnapshotFileSheetSelectionScope":{
@@ -24415,7 +24704,7 @@
     "SnapshotFileSheetSelectionVisualIdList":{
       "type":"list",
       "member":{"shape":"ShortRestrictiveResourceId"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "SnapshotJobErrorInfo":{
@@ -25007,6 +25296,14 @@
       },
       "documentation":"<p>The configuration that defines the default value of a <code>String</code> parameter when a value has not been set.</p>"
     },
+    "StyledCellType":{
+      "type":"string",
+      "enum":[
+        "TOTAL",
+        "METRIC_HEADER",
+        "VALUE"
+      ]
+    },
     "SubnetId":{
       "type":"string",
       "max":255,
@@ -25049,6 +25346,10 @@
         "MetricHeaderCellStyle":{
           "shape":"TableCellStyle",
           "documentation":"<p>The cell styling options for the subtotals of header cells.</p>"
+        },
+        "StyleTargets":{
+          "shape":"TableStyleTargetList",
+          "documentation":"<p>The style targets options for subtotals.</p>"
         }
       },
       "documentation":"<p>The subtotal options.</p>"
@@ -25354,14 +25655,24 @@
       "members":{
         "SelectedFieldOptions":{
           "shape":"TableFieldOptionList",
-          "documentation":"<p>The selected field options for the table field options.</p>"
+          "documentation":"<p>The field options to be configured to a table.</p>"
         },
         "Order":{
           "shape":"FieldOrderList",
-          "documentation":"<p>The order of field IDs of the field options for a table visual.</p>"
+          "documentation":"<p>The order of the field IDs that are configured as field options for a table visual.</p>"
+        },
+        "PinnedFieldOptions":{
+          "shape":"TablePinnedFieldOptions",
+          "documentation":"<p>The settings for the pinned columns of a table visual.</p>"
         }
       },
-      "documentation":"<p>The field options for a table visual.</p>"
+      "documentation":"<p>The field options of a table visual.</p>"
+    },
+    "TableFieldOrderList":{
+      "type":"list",
+      "member":{"shape":"FieldId"},
+      "documentation":"<p>A list of table field IDs.</p>",
+      "max":201
     },
     "TableFieldURLConfiguration":{
       "type":"structure",
@@ -25449,6 +25760,16 @@
       },
       "documentation":"<p>The paginated report options for a table visual.</p>"
     },
+    "TablePinnedFieldOptions":{
+      "type":"structure",
+      "members":{
+        "PinnedLeftFields":{
+          "shape":"TableFieldOrderList",
+          "documentation":"<p>A list of columns to be pinned to the left of a table visual.</p>"
+        }
+      },
+      "documentation":"<p>The settings for the pinned columns of a table visual.</p>"
+    },
     "TableRowConditionalFormatting":{
       "type":"structure",
       "members":{
@@ -25507,11 +25828,28 @@
       },
       "documentation":"<p>The sort configuration for a <code>TableVisual</code>.</p>"
     },
+    "TableStyleTarget":{
+      "type":"structure",
+      "required":["CellType"],
+      "members":{
+        "CellType":{
+          "shape":"StyledCellType",
+          "documentation":"<p>The cell type of the table style target.</p>"
+        }
+      },
+      "documentation":"<p>The table style target.</p>"
+    },
+    "TableStyleTargetList":{
+      "type":"list",
+      "member":{"shape":"TableStyleTarget"},
+      "max":3
+    },
     "TableTotalsPlacement":{
       "type":"string",
       "enum":[
         "START",
-        "END"
+        "END",
+        "AUTO"
       ]
     },
     "TableTotalsScrollStatus":{
@@ -26573,8 +26911,6 @@
       "type":"structure",
       "required":[
         "ComputationId",
-        "Time",
-        "Category",
         "Type"
       ],
       "members":{
@@ -26622,7 +26958,6 @@
       "type":"structure",
       "required":[
         "ComputationId",
-        "Category",
         "Type"
       ],
       "members":{
@@ -26735,6 +27070,10 @@
         "CellValueSynonyms":{
           "shape":"CellValueSynonyms",
           "documentation":"<p>The other names or aliases for the calculated field cell value.</p>"
+        },
+        "NonAdditive":{
+          "shape":"NullableBoolean",
+          "documentation":"<p>The non additive for the table style target.</p>"
         }
       },
       "documentation":"<p>A structure that represents a calculated field.</p>"
@@ -26810,7 +27149,7 @@
         },
         "Aggregation":{
           "shape":"DefaultAggregation",
-          "documentation":"<p>The type of aggregation that is performed on the column data when it's queried. Valid values for this structure are <code>SUM</code>, <code>MAX</code>, <code>MIN</code>, <code>COUNT</code>, <code>DISTINCT_COUNT</code>, and <code>AVERAGE</code>.</p>"
+          "documentation":"<p>The type of aggregation that is performed on the column data when it's queried.</p>"
         },
         "IsIncludedInTopic":{
           "shape":"Boolean",
@@ -26851,6 +27190,10 @@
         "CellValueSynonyms":{
           "shape":"CellValueSynonyms",
           "documentation":"<p>The other names or aliases for the column cell value.</p>"
+        },
+        "NonAdditive":{
+          "shape":"NullableBoolean",
+          "documentation":"<p>The non additive value for the column.</p>"
         }
       },
       "documentation":"<p>Represents a column in a dataset.</p>"
@@ -27216,10 +27559,7 @@
     },
     "TotalAggregationComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Value"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -27595,10 +27935,7 @@
     },
     "UniqueValuesComputation":{
       "type":"structure",
-      "required":[
-        "ComputationId",
-        "Category"
-      ],
+      "required":["ComputationId"],
       "members":{
         "ComputationId":{
           "shape":"ShortRestrictiveResourceId",
@@ -27888,6 +28225,10 @@
         "Definition":{
           "shape":"AnalysisDefinition",
           "documentation":"<p>The definition of an analysis.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>"
+        },
+        "ValidationStrategy":{
+          "shape":"ValidationStrategy",
+          "documentation":"<p>The option to relax the validation needed to update an analysis with definition objects. This skips the validation step for specific errors.</p>"
         }
       }
     },
@@ -28081,6 +28422,10 @@
         "Definition":{
           "shape":"DashboardVersionDefinition",
           "documentation":"<p>The definition of a dashboard.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>"
+        },
+        "ValidationStrategy":{
+          "shape":"ValidationStrategy",
+          "documentation":"<p>The option to relax the validation needed to update a dashboard with definition objects. This skips the validation step for specific errors.</p>"
         }
       }
     },
@@ -28870,6 +29215,10 @@
         "Definition":{
           "shape":"TemplateVersionDefinition",
           "documentation":"<p>The definition of a template.</p> <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>"
+        },
+        "ValidationStrategy":{
+          "shape":"ValidationStrategy",
+          "documentation":"<p>The option to relax the validation needed to update a template with definition objects. This skips the validation step for specific errors.</p>"
         }
       }
     },
@@ -29636,6 +29985,24 @@
       "type":"list",
       "member":{"shape":"VPCConnectionSummary"}
     },
+    "ValidationStrategy":{
+      "type":"structure",
+      "required":["Mode"],
+      "members":{
+        "Mode":{
+          "shape":"ValidationStrategyMode",
+          "documentation":"<p>The mode of validation for the asset to be creaed or updated. When you set this value to <code>STRICT</code>, strict validation for every error is enforced. When you set this value to <code>LENIENT</code>, validation is skipped for specific UI errors.</p>"
+        }
+      },
+      "documentation":"<p>The option to relax the validation that is required to create and update analyses, dashboards, and templates with definition objects. When you set this value to <code>LENIENT</code>, validation is skipped for specific errors.</p>"
+    },
+    "ValidationStrategyMode":{
+      "type":"string",
+      "enum":[
+        "STRICT",
+        "LENIENT"
+      ]
+    },
     "ValueWhenUnsetOption":{
       "type":"string",
       "enum":[
@@ -29657,7 +30024,8 @@
       "enum":[
         "TOP",
         "MIDDLE",
-        "BOTTOM"
+        "BOTTOM",
+        "AUTO"
       ]
     },
     "Visibility":{

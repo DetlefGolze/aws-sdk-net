@@ -173,6 +173,39 @@
     <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.CreateRetrainingSchedulerRequest.ClientToken</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.CreateRetrainingSchedulerRequest.LookbackWindow</property>
+    <pattern>^P180D$|^P360D$|^P540D$|^P720D$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.CreateRetrainingSchedulerRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.CreateRetrainingSchedulerRequest.RetrainingFrequency</property>
+    <min>1</min>
+    <max>10</max>
+    <pattern>^P(\dY)?(\d{1,2}M)?(\d{1,3}D)?$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.CreateRetrainingSchedulerResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.CreateRetrainingSchedulerResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DeleteDatasetRequest.DatasetName</property>
     <min>1</min>
     <max>200</max>
@@ -208,6 +241,18 @@
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DeleteResourcePolicyRequest.ResourceArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DeleteRetrainingSchedulerRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DescribeDataIngestionJobRequest.JobId</property>
     <max>32</max>
     <pattern>[A-Fa-f0-9]{0,32}</pattern>
@@ -238,6 +283,12 @@
     <min>20</min>
     <max>2048</max>
     <pattern>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeDataIngestionJobResponse.SourceDatasetArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:dataset\/.+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DescribeDataIngestionJobResponse.StatusDetail</property>
@@ -279,6 +330,12 @@
     <min>1</min>
     <max>1024</max>
     <pattern>arn:aws[a-z\-]*:kms:[a-z0-9\-]*:\d{12}:[\w\-\/]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeDatasetResponse.SourceDatasetArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:dataset\/.+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DescribeInferenceSchedulerRequest.InferenceSchedulerName</property>
@@ -398,6 +455,16 @@
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.ActiveModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.ActiveModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.DatasetArn</property>
     <min>20</min>
     <max>2048</max>
@@ -414,6 +481,16 @@
     <min>1</min>
     <max>5000</max>
     <pattern>[\P{M}\p{M}]{1,5000}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.LatestScheduledRetrainingFailedReason</property>
+    <min>1</min>
+    <max>5000</max>
+    <pattern>[\P{M}\p{M}]{1,5000}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.LatestScheduledRetrainingModelVersion</property>
+    <min>1</min>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.ModelArn</property>
@@ -438,6 +515,21 @@
     <max>2048</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.PreviousActiveModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.PreviousActiveModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.PriorModelMetrics</property>
+    <min>1</min>
+    <max>50000</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.RoleArn</property>
     <min>20</min>
     <max>2048</max>
@@ -453,6 +545,251 @@
     <min>1</min>
     <max>1024</max>
     <pattern>arn:aws[a-z\-]*:kms:[a-z0-9\-]*:\d{12}:[\w\-\/]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelResponse.SourceModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionRequest.ModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.AutoPromotionResultReason</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.DatasetArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:dataset\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.DatasetName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.FailedReason</property>
+    <min>1</min>
+    <max>5000</max>
+    <pattern>[\P{M}\p{M}]{1,5000}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ImportedDataSizeInBytes</property>
+    <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ModelMetrics</property>
+    <min>1</min>
+    <max>50000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.OffCondition</property>
+    <min>1</min>
+    <max>2048</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.PriorModelMetrics</property>
+    <min>1</min>
+    <max>50000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.RoleArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.Schema</property>
+    <min>1</min>
+    <max>1000000</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.ServerSideKmsKeyId</property>
+    <min>1</min>
+    <max>1024</max>
+    <pattern>arn:aws[a-z\-]*:kms:[a-z0-9\-]*:\d{12}:[\w\-\/]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeModelVersionResponse.SourceModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeResourcePolicyRequest.ResourceArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeResourcePolicyResponse.PolicyRevisionId</property>
+    <max>50</max>
+    <pattern>[0-9A-Fa-f]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeResourcePolicyResponse.ResourcePolicy</property>
+    <min>1</min>
+    <max>20000</max>
+    <pattern>[\u0009\u000A\u000D\u0020-\u00FF]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeRetrainingSchedulerRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeRetrainingSchedulerResponse.LookbackWindow</property>
+    <pattern>^P180D$|^P360D$|^P540D$|^P720D$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeRetrainingSchedulerResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeRetrainingSchedulerResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.DescribeRetrainingSchedulerResponse.RetrainingFrequency</property>
+    <min>1</min>
+    <max>10</max>
+    <pattern>^P(\dY)?(\d{1,2}M)?(\d{1,3}D)?$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetRequest.ClientToken</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetRequest.DatasetName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetRequest.ServerSideKmsKeyId</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetRequest.SourceDatasetArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:dataset\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetResponse.DatasetArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:dataset\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetResponse.DatasetName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportDatasetResponse.JobId</property>
+    <max>32</max>
+    <pattern>[A-Fa-f0-9]{0,32}</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionRequest.ClientToken</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionRequest.DatasetName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionRequest.RoleArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionRequest.ServerSideKmsKeyId</property>
+    <min>1</min>
+    <max>2048</max>
+    <pattern>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionRequest.SourceModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionResponse.ModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ImportModelVersionResponse.ModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.ListDataIngestionJobsRequest.DatasetName</property>
@@ -631,6 +968,52 @@
     <max>8192</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListModelVersionsRequest.MaxModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListModelVersionsRequest.MaxResults</property>
+    <min>1</min>
+    <max>500</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListModelVersionsRequest.MinModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListModelVersionsRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListModelVersionsRequest.NextToken</property>
+    <max>8192</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListModelVersionsResponse.NextToken</property>
+    <max>8192</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListRetrainingSchedulersRequest.MaxResults</property>
+    <min>1</min>
+    <max>500</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListRetrainingSchedulersRequest.ModelNameBeginsWith</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListRetrainingSchedulersRequest.NextToken</property>
+    <max>8192</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ListRetrainingSchedulersResponse.NextToken</property>
+    <max>8192</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.ListSensorStatisticsRequest.DatasetName</property>
     <min>1</min>
     <max>200</max>
@@ -658,6 +1041,39 @@
     <property>Amazon.LookoutEquipment.Model.ListTagsForResourceRequest.ResourceArn</property>
     <min>1</min>
     <max>1011</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.PutResourcePolicyRequest.ClientToken</property>
+    <min>1</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.PutResourcePolicyRequest.PolicyRevisionId</property>
+    <max>50</max>
+    <pattern>[0-9A-Fa-f]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.PutResourcePolicyRequest.ResourceArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.PutResourcePolicyRequest.ResourcePolicy</property>
+    <min>1</min>
+    <max>20000</max>
+    <pattern>[\u0009\u000A\u000D\u0020-\u00FF]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.PutResourcePolicyResponse.PolicyRevisionId</property>
+    <max>50</max>
+    <pattern>[0-9A-Fa-f]+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.PutResourcePolicyResponse.ResourceArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:.+</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.StartDataIngestionJobRequest.ClientToken</property>
@@ -712,6 +1128,24 @@
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.StartRetrainingSchedulerRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.StartRetrainingSchedulerResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.StartRetrainingSchedulerResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.StopInferenceSchedulerRequest.InferenceSchedulerName</property>
     <min>1</min>
     <max>200</max>
@@ -742,6 +1176,24 @@
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.StopRetrainingSchedulerRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.StopRetrainingSchedulerResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.StopRetrainingSchedulerResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.TagResourceRequest.ResourceArn</property>
     <min>1</min>
     <max>1011</max>
@@ -750,6 +1202,48 @@
     <property>Amazon.LookoutEquipment.Model.UntagResourceRequest.ResourceArn</property>
     <min>1</min>
     <max>1011</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionRequest.ModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionResponse.CurrentActiveVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionResponse.CurrentActiveVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionResponse.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionResponse.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionResponse.PreviousActiveVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateActiveModelVersionResponse.PreviousActiveVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.UpdateInferenceSchedulerRequest.DataDelayOffsetInMinutes</property>
@@ -773,6 +1267,34 @@
     <min>1</min>
     <max>200</max>
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateModelRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateModelRequest.RoleArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateRetrainingSchedulerRequest.LookbackWindow</property>
+    <pattern>^P180D$|^P360D$|^P540D$|^P720D$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateRetrainingSchedulerRequest.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.UpdateRetrainingSchedulerRequest.RetrainingFrequency</property>
+    <min>1</min>
+    <max>10</max>
+    <pattern>^P(\dY)?(\d{1,2}M)?(\d{1,3}D)?$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.DataIngestionJobSummary.DatasetArn</property>
@@ -858,6 +1380,16 @@
     <min>1</min>
     <max>200</max>
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.InferenceExecutionSummary.ModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.InferenceExecutionSummary.ModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.InferenceInputConfiguration.InputTimeZoneOffset</property>
@@ -1008,6 +1540,16 @@
     <pattern>[A-Fa-f0-9]{0,32}</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelSummary.ActiveModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelSummary.ActiveModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.ModelSummary.DatasetArn</property>
     <min>20</min>
     <max>2048</max>
@@ -1020,6 +1562,10 @@
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelSummary.LatestScheduledRetrainingModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.ModelSummary.ModelArn</property>
     <min>20</min>
     <max>2048</max>
@@ -1030,6 +1576,50 @@
     <min>1</min>
     <max>200</max>
     <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelVersionSummary.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelVersionSummary.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelVersionSummary.ModelVersion</property>
+    <min>1</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.ModelVersionSummary.ModelVersionArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>^arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+\/.+\/model-version\/[0-9]{1,}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.RetrainingSchedulerSummary.LookbackWindow</property>
+    <pattern>^P180D$|^P360D$|^P540D$|^P720D$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.RetrainingSchedulerSummary.ModelArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:aws(-[^:]+)?:lookoutequipment:[a-zA-Z0-9\-]*:[0-9]{12}:model\/.+</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.RetrainingSchedulerSummary.ModelName</property>
+    <min>1</min>
+    <max>200</max>
+    <pattern>^[0-9a-zA-Z_-]{1,200}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.LookoutEquipment.Model.RetrainingSchedulerSummary.RetrainingFrequency</property>
+    <min>1</min>
+    <max>10</max>
+    <pattern>^P(\dY)?(\d{1,2}M)?(\d{1,3}D)?$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.LookoutEquipment.Model.S3Object.Bucket</property>

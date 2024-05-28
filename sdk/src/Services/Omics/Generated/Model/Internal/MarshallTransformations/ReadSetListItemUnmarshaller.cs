@@ -76,10 +76,22 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreationTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("creationType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CreationType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("description", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("etag", targetDepth))
+                {
+                    var unmarshaller = ETagUnmarshaller.Instance;
+                    unmarshalledObject.Etag = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("fileType", targetDepth))

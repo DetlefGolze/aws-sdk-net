@@ -56,7 +56,9 @@ namespace Amazon.MedicalImaging
     /// back to corresponding sections in the <i>AWS HealthImaging Developer Guide</i> so
     /// you can view console procedures and CLI/SDK code examples.
     /// </para>
-    ///  <p class="title"> <b>Data store actions</b> 
+    ///  
+    /// <para>
+    ///  <b>Data store actions</b> 
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -82,7 +84,9 @@ namespace Amazon.MedicalImaging
     /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/delete-data-store.html">Deleting
     /// a data store</a>.
     /// </para>
-    ///  </li> </ul> <p class="title"> <b>Import job actions</b> 
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Import job actions</b> 
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -102,7 +106,9 @@ namespace Amazon.MedicalImaging
     /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/list-dicom-import-jobs.html">Listing
     /// import jobs</a>.
     /// </para>
-    ///  </li> </ul> <p class="title"> <b>Image set access actions</b> 
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Image set access actions</b> 
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -128,7 +134,9 @@ namespace Amazon.MedicalImaging
     /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/get-image-frame.html">Getting
     /// image set pixel data</a>.
     /// </para>
-    ///  </li> </ul> <p class="title"> <b>Image set modification actions</b> 
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Image set modification actions</b> 
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -154,7 +162,9 @@ namespace Amazon.MedicalImaging
     /// – See <a href="https://docs.aws.amazon.com/medical-imaging/latest/devguide/delete-image-set.html">Deleting
     /// an image set</a>.
     /// </para>
-    ///  </li> </ul> <p class="title"> <b>Tagging actions</b> 
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Tagging actions</b> 
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -835,6 +845,17 @@ namespace Amazon.MedicalImaging
         Task<UpdateImageSetMetadataResponse> UpdateImageSetMetadataAsync(UpdateImageSetMetadataRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

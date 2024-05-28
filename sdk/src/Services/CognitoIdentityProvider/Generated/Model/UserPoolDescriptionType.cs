@@ -43,7 +43,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// The date the user pool description was created.
+        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+        /// 8601</a> format, when the item was created.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -98,7 +99,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LastModifiedDate. 
         /// <para>
-        /// The date the user pool description was last modified.
+        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+        /// 8601</a> format, when the item was modified.
         /// </para>
         /// </summary>
         public DateTime LastModifiedDate
@@ -138,6 +140,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// The user pool status in a user pool description.
         /// </para>
         /// </summary>
+        [Obsolete("This property is no longer available.")]
         public StatusType Status
         {
             get { return this._status; }

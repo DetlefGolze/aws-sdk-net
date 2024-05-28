@@ -3844,10 +3844,11 @@ namespace Amazon.DynamoDBv2
 
 
         /// <summary>
-        /// List backups associated with an Amazon Web Services account. To list backups for a
-        /// given table, specify <code>TableName</code>. <code>ListBackups</code> returns a paginated
-        /// list of results with at most 1 MB worth of items in a page. You can also specify a
-        /// maximum number of entries to be returned in a page.
+        /// List DynamoDB backups that are associated with an Amazon Web Services account and
+        /// weren't made with Amazon Web Services Backup. To list these backups for a given table,
+        /// specify <code>TableName</code>. <code>ListBackups</code> returns a paginated list
+        /// of results with at most 1 MB worth of items in a page. You can also specify a maximum
+        /// number of entries to be returned in a page.
         /// 
         ///  
         /// <para>
@@ -3857,6 +3858,12 @@ namespace Amazon.DynamoDBv2
         ///  
         /// <para>
         /// You can call <code>ListBackups</code> a maximum of five times per second.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you want to retrieve the complete list of backups made with Amazon Web Services
+        /// Backup, use the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupJobs.html">Amazon
+        /// Web Services Backup list API.</a> 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListBackups service method.</param>
@@ -7288,5 +7295,28 @@ namespace Amazon.DynamoDBv2
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonDynamoDBEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

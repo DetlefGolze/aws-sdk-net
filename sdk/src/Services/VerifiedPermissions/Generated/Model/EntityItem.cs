@@ -38,9 +38,9 @@ namespace Amazon.VerifiedPermissions.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>{ "id": { "entityType": "Photo", "entityId": "VacationPhoto94.jpg" }, "Attributes":
-    /// {}, "Parents": [ { "entityType": "Album", "entityId": "alice_folder" } ] }</code>
-    /// 
+    ///  <code>{ "identifier": { "entityType": "Photo", "entityId": "VacationPhoto94.jpg"
+    /// }, "attributes": {}, "parents": [ { "entityType": "Album", "entityId": "alice_folder"
+    /// } ] }</code> 
     /// </para>
     /// </summary>
     public partial class EntityItem
@@ -55,7 +55,6 @@ namespace Amazon.VerifiedPermissions.Model
         /// A list of attributes for the entity.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0)]
         public Dictionary<string, AttributeValue> Attributes
         {
             get { return this._attributes; }

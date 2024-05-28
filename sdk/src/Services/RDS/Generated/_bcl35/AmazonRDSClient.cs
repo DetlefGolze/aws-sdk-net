@@ -2065,8 +2065,8 @@ namespace Amazon.RDS
         /// 
         ///  
         /// <para>
-        /// Amazon Aurora doesn't support this operation. Call the <code>CreateDBInstance</code>
-        /// operation to create a DB instance for an Aurora DB cluster.
+        /// Amazon Aurora doesn't support this operation. To create a DB instance for an Aurora
+        /// DB cluster, use the <code>CreateDBInstance</code> operation.
         /// </para>
         ///  
         /// <para>
@@ -3096,6 +3096,11 @@ namespace Amazon.RDS
         /// <param name="request">Container for the necessary parameters to execute the DeleteDBCluster service method.</param>
         /// 
         /// <returns>The response from the DeleteDBCluster service method, as returned by RDS.</returns>
+        /// <exception cref="Amazon.RDS.Model.DBClusterAutomatedBackupQuotaExceededException">
+        /// The quota for retained automated backups was exceeded. This prevents you from retaining
+        /// any additional automated backups. The retained automated backups quota is the same
+        /// as your DB cluster quota.
+        /// </exception>
         /// <exception cref="Amazon.RDS.Model.DBClusterNotFoundException">
         /// <code>DBClusterIdentifier</code> doesn't refer to an existing DB cluster.
         /// </exception>
@@ -3153,6 +3158,68 @@ namespace Amazon.RDS
         public virtual DeleteDBClusterResponse EndDeleteDBCluster(IAsyncResult asyncResult)
         {
             return EndInvoke<DeleteDBClusterResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DeleteDBClusterAutomatedBackup
+
+        /// <summary>
+        /// Deletes automated backups using the <code>DbClusterResourceId</code> value of the
+        /// source DB cluster or the Amazon Resource Name (ARN) of the automated backups.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDBClusterAutomatedBackup service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDBClusterAutomatedBackup service method, as returned by RDS.</returns>
+        /// <exception cref="Amazon.RDS.Model.DBClusterAutomatedBackupNotFoundException">
+        /// No automated backup for this DB cluster was found.
+        /// </exception>
+        /// <exception cref="Amazon.RDS.Model.InvalidDBClusterAutomatedBackupStateException">
+        /// The automated backup is in an invalid state. For example, this automated backup is
+        /// associated with an active cluster.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterAutomatedBackup">REST API Reference for DeleteDBClusterAutomatedBackup Operation</seealso>
+        public virtual DeleteDBClusterAutomatedBackupResponse DeleteDBClusterAutomatedBackup(DeleteDBClusterAutomatedBackupRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDBClusterAutomatedBackupRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDBClusterAutomatedBackupResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteDBClusterAutomatedBackupResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteDBClusterAutomatedBackup operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDBClusterAutomatedBackup operation on AmazonRDSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteDBClusterAutomatedBackup
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterAutomatedBackup">REST API Reference for DeleteDBClusterAutomatedBackup Operation</seealso>
+        public virtual IAsyncResult BeginDeleteDBClusterAutomatedBackup(DeleteDBClusterAutomatedBackupRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDBClusterAutomatedBackupRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDBClusterAutomatedBackupResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteDBClusterAutomatedBackup operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteDBClusterAutomatedBackup.</param>
+        /// 
+        /// <returns>Returns a  DeleteDBClusterAutomatedBackupResult from RDS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterAutomatedBackup">REST API Reference for DeleteDBClusterAutomatedBackup Operation</seealso>
+        public virtual DeleteDBClusterAutomatedBackupResponse EndDeleteDBClusterAutomatedBackup(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeleteDBClusterAutomatedBackupResponse>(asyncResult);
         }
 
         #endregion
@@ -3381,17 +3448,15 @@ namespace Amazon.RDS
         #region  DeleteDBInstance
 
         /// <summary>
-        /// The DeleteDBInstance action deletes a previously provisioned DB instance. When you
-        /// delete a DB instance, all automated backups for that instance are deleted and can't
-        /// be recovered. Manual DB snapshots of the DB instance to be deleted by <code>DeleteDBInstance</code>
-        /// are not deleted.
+        /// Deletes a previously provisioned DB instance. When you delete a DB instance, all automated
+        /// backups for that instance are deleted and can't be recovered. However, manual DB snapshots
+        /// of the DB instance aren't deleted.
         /// 
         ///  
         /// <para>
-        /// If you request a final DB snapshot the status of the Amazon RDS DB instance is <code>deleting</code>
-        /// until the DB snapshot is created. The API action <code>DescribeDBInstance</code> is
-        /// used to monitor the status of this operation. The action can't be canceled or reverted
-        /// once submitted.
+        /// If you request a final DB snapshot, the status of the Amazon RDS DB instance is <code>deleting</code>
+        /// until the DB snapshot is created. This operation can't be canceled or reverted after
+        /// it begins. To monitor the status of this operation, use <code>DescribeDBInstance</code>.
         /// </para>
         ///  
         /// <para>
@@ -3415,11 +3480,19 @@ namespace Amazon.RDS
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To delete a DB instance in this case, first call the <code>PromoteReadReplicaDBCluster</code>
-        /// API action to promote the DB cluster so it's no longer a read replica. After the promotion
-        /// completes, then call the <code>DeleteDBInstance</code> API action to delete the final
-        /// instance in the DB cluster.
+        /// To delete a DB instance in this case, first use the <code>PromoteReadReplicaDBCluster</code>
+        /// operation to promote the DB cluster so that it's no longer a read replica. After the
+        /// promotion completes, use the <code>DeleteDBInstance</code> operation to delete the
+        /// final instance in the DB cluster.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// For RDS Custom DB instances, deleting the DB instance permanently deletes the EC2
+        /// instance and the associated EBS volumes. Make sure that you don't terminate or delete
+        /// these resources before you delete the DB instance. Otherwise, deleting the DB instance
+        /// and creation of the final snapshot might fail.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDBInstance service method.</param>
         /// 
@@ -3427,7 +3500,7 @@ namespace Amazon.RDS
         /// <exception cref="Amazon.RDS.Model.DBInstanceAutomatedBackupQuotaExceededException">
         /// The quota for retained automated backups was exceeded. This prevents you from retaining
         /// any additional automated backups. The retained automated backups quota is the same
-        /// as your DB Instance quota.
+        /// as your DB instance quota.
         /// </exception>
         /// <exception cref="Amazon.RDS.Model.DBInstanceNotFoundException">
         /// <code>DBInstanceIdentifier</code> doesn't refer to an existing DB instance.
@@ -4359,8 +4432,8 @@ namespace Amazon.RDS
         #region  DescribeCertificates
 
         /// <summary>
-        /// Lists the set of CA certificates provided by Amazon RDS for this Amazon Web Services
-        /// account.
+        /// Lists the set of certificate authority (CA) certificates provided by Amazon RDS for
+        /// this Amazon Web Services account.
         /// 
         ///  
         /// <para>
@@ -4419,6 +4492,71 @@ namespace Amazon.RDS
         public virtual DescribeCertificatesResponse EndDescribeCertificates(IAsyncResult asyncResult)
         {
             return EndInvoke<DescribeCertificatesResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DescribeDBClusterAutomatedBackups
+
+        /// <summary>
+        /// Displays backups for both current and deleted DB clusters. For example, use this operation
+        /// to find details about automated backups for previously deleted clusters. Current clusters
+        /// are returned for both the <code>DescribeDBClusterAutomatedBackups</code> and <code>DescribeDBClusters</code>
+        /// operations.
+        /// 
+        ///  
+        /// <para>
+        /// All parameters are optional.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDBClusterAutomatedBackups service method.</param>
+        /// 
+        /// <returns>The response from the DescribeDBClusterAutomatedBackups service method, as returned by RDS.</returns>
+        /// <exception cref="Amazon.RDS.Model.DBClusterAutomatedBackupNotFoundException">
+        /// No automated backup for this DB cluster was found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterAutomatedBackups">REST API Reference for DescribeDBClusterAutomatedBackups Operation</seealso>
+        public virtual DescribeDBClusterAutomatedBackupsResponse DescribeDBClusterAutomatedBackups(DescribeDBClusterAutomatedBackupsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeDBClusterAutomatedBackupsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeDBClusterAutomatedBackupsResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeDBClusterAutomatedBackupsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeDBClusterAutomatedBackups operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeDBClusterAutomatedBackups operation on AmazonRDSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeDBClusterAutomatedBackups
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterAutomatedBackups">REST API Reference for DescribeDBClusterAutomatedBackups Operation</seealso>
+        public virtual IAsyncResult BeginDescribeDBClusterAutomatedBackups(DescribeDBClusterAutomatedBackupsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeDBClusterAutomatedBackupsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeDBClusterAutomatedBackupsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeDBClusterAutomatedBackups operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeDBClusterAutomatedBackups.</param>
+        /// 
+        /// <returns>Returns a  DescribeDBClusterAutomatedBackupsResult from RDS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterAutomatedBackups">REST API Reference for DescribeDBClusterAutomatedBackups Operation</seealso>
+        public virtual DescribeDBClusterAutomatedBackupsResponse EndDescribeDBClusterAutomatedBackups(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DescribeDBClusterAutomatedBackupsResponse>(asyncResult);
         }
 
         #endregion
@@ -4916,7 +5054,7 @@ namespace Amazon.RDS
         #region  DescribeDBEngineVersions
 
         /// <summary>
-        /// Returns a list of the available DB engines.
+        /// Describes the properties of specific versions of DB engines.
         /// </summary>
         /// 
         /// <returns>The response from the DescribeDBEngineVersions service method, as returned by RDS.</returns>
@@ -4927,7 +5065,7 @@ namespace Amazon.RDS
         }
 
         /// <summary>
-        /// Returns a list of the available DB engines.
+        /// Describes the properties of specific versions of DB engines.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeDBEngineVersions service method.</param>
         /// 
@@ -7084,30 +7222,68 @@ namespace Amazon.RDS
         #region  FailoverGlobalCluster
 
         /// <summary>
-        /// Initiates the failover process for an Aurora global database (<a>GlobalCluster</a>).
+        /// Promotes the specified secondary DB cluster to be the primary DB cluster in the global
+        /// database cluster to fail over or switch over a global database. Switchover operations
+        /// were previously called "managed planned failovers."
         /// 
-        ///  
-        /// <para>
-        /// A failover for an Aurora global database promotes one of secondary read-only DB clusters
-        /// to be the primary DB cluster and demotes the primary DB cluster to being a secondary
-        /// (read-only) DB cluster. In other words, the role of the current primary DB cluster
-        /// and the selected (target) DB cluster are switched. The selected secondary DB cluster
-        /// assumes full read/write capabilities for the Aurora global database.
-        /// </para>
-        ///  
-        /// <para>
-        /// For more information about failing over an Amazon Aurora global database, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover">Managed
-        /// planned failover for Amazon Aurora global databases</a> in the <i>Amazon Aurora User
-        /// Guide</i>.
-        /// </para>
         ///  <note> 
         /// <para>
-        /// This action applies to <a>GlobalCluster</a> (Aurora global databases) only. Use this
-        /// action only on healthy Aurora global databases with running Aurora DB clusters and
-        /// no Region-wide outages, to test disaster recovery scenarios or to reconfigure your
-        /// Aurora global database topology.
+        /// Although this operation can be used either to fail over or to switch over a global
+        /// database cluster, its intended use is for global database failover. To switch over
+        /// a global database cluster, we recommend that you use the <a>SwitchoverGlobalCluster</a>
+        /// operation instead.
         /// </para>
-        ///  </note>
+        ///  </note> 
+        /// <para>
+        /// How you use this operation depends on whether you are failing over or switching over
+        /// your global database cluster:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Failing over - Specify the <code>AllowDataLoss</code> parameter and don't specify
+        /// the <code>Switchover</code> parameter.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Switching over - Specify the <code>Switchover</code> parameter or omit it, but don't
+        /// specify the <code>AllowDataLoss</code> parameter.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        ///  <b>About failing over and switching over</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// While failing over and switching over a global database cluster both change the primary
+        /// DB cluster, you use these operations for different reasons:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <i>Failing over</i> - Use this operation to respond to an unplanned event, such as
+        /// a Regional disaster in the primary Region. Failing over can result in a loss of write
+        /// transaction data that wasn't replicated to the chosen secondary before the failover
+        /// event occurred. However, the recovery process that promotes a DB instance on the chosen
+        /// seconday DB cluster to be the primary writer DB instance guarantees that the data
+        /// is in a transactionally consistent state.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about failing over an Amazon Aurora global database, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-failover.managed-unplanned">Performing
+        /// managed failovers for Aurora global databases</a> in the <i>Amazon Aurora User Guide</i>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <i>Switching over</i> - Use this operation on a healthy global database cluster for
+        /// planned events, such as Regional rotation or to fail back to the original primary
+        /// DB cluster after a failover operation. With this operation, there is no data loss.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about switching over an Amazon Aurora global database, see <a
+        /// href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover">Performing
+        /// switchovers for Aurora global databases</a> in the <i>Amazon Aurora User Guide</i>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the FailoverGlobalCluster service method.</param>
         /// 
@@ -8686,9 +8862,9 @@ namespace Amazon.RDS
         #region  ModifyGlobalCluster
 
         /// <summary>
-        /// Modifies a setting for an Amazon Aurora global cluster. You can change one or more
-        /// database configuration parameters by specifying these parameters and the new values
-        /// in the request. For more information on Amazon Aurora, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html">
+        /// Modifies a setting for an Amazon Aurora global database cluster. You can change one
+        /// or more database configuration parameters by specifying these parameters and the new
+        /// values in the request. For more information on Amazon Aurora, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html">
         /// What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.
         /// 
         ///  <note> 
@@ -9952,6 +10128,10 @@ namespace Amazon.RDS
         /// <exception cref="Amazon.RDS.Model.DBSnapshotNotFoundException">
         /// <code>DBSnapshotIdentifier</code> doesn't refer to an existing DB snapshot.
         /// </exception>
+        /// <exception cref="Amazon.RDS.Model.DBSubnetGroupDoesNotCoverEnoughAZsException">
+        /// Subnets in the DB subnet group should cover at least two Availability Zones unless
+        /// there is only one Availability Zone.
+        /// </exception>
         /// <exception cref="Amazon.RDS.Model.DBSubnetGroupNotFoundException">
         /// <code>DBSubnetGroupName</code> doesn't refer to an existing DB subnet group.
         /// </exception>
@@ -10076,6 +10256,9 @@ namespace Amazon.RDS
         /// <returns>The response from the RestoreDBClusterToPointInTime service method, as returned by RDS.</returns>
         /// <exception cref="Amazon.RDS.Model.DBClusterAlreadyExistsException">
         /// The user already has a DB cluster with the given identifier.
+        /// </exception>
+        /// <exception cref="Amazon.RDS.Model.DBClusterAutomatedBackupNotFoundException">
+        /// No automated backup for this DB cluster was found.
         /// </exception>
         /// <exception cref="Amazon.RDS.Model.DBClusterNotFoundException">
         /// <code>DBClusterIdentifier</code> doesn't refer to an existing DB cluster.
@@ -10476,8 +10659,9 @@ namespace Amazon.RDS
 
         /// <summary>
         /// Restores a DB instance to an arbitrary point in time. You can restore to any point
-        /// in time before the time identified by the LatestRestorableTime property. You can restore
-        /// to a point up to the number of days specified by the BackupRetentionPeriod property.
+        /// in time before the time identified by the <code>LatestRestorableTime</code> property.
+        /// You can restore to a point up to the number of days specified by the <code>BackupRetentionPeriod</code>
+        /// property.
         /// 
         ///  
         /// <para>
@@ -10991,7 +11175,7 @@ namespace Amazon.RDS
         /// <exception cref="Amazon.RDS.Model.DBInstanceAutomatedBackupQuotaExceededException">
         /// The quota for retained automated backups was exceeded. This prevents you from retaining
         /// any additional automated backups. The retained automated backups quota is the same
-        /// as your DB Instance quota.
+        /// as your DB instance quota.
         /// </exception>
         /// <exception cref="Amazon.RDS.Model.DBInstanceNotFoundException">
         /// <code>DBInstanceIdentifier</code> doesn't refer to an existing DB instance.
@@ -11548,6 +11732,94 @@ namespace Amazon.RDS
 
         #endregion
         
+        #region  SwitchoverGlobalCluster
+
+        /// <summary>
+        /// Switches over the specified secondary DB cluster to be the new primary DB cluster
+        /// in the global database cluster. Switchover operations were previously called "managed
+        /// planned failovers."
+        /// 
+        ///  
+        /// <para>
+        /// Aurora promotes the specified secondary cluster to assume full read/write capabilities
+        /// and demotes the current primary cluster to a secondary (read-only) cluster, maintaining
+        /// the orginal replication topology. All secondary clusters are synchronized with the
+        /// primary at the beginning of the process so the new primary continues operations for
+        /// the Aurora global database without losing any data. Your database is unavailable for
+        /// a short time while the primary and selected secondary clusters are assuming their
+        /// new roles. For more information about switching over an Aurora global database, see
+        /// <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover">Performing
+        /// switchovers for Amazon Aurora global databases</a> in the <i>Amazon Aurora User Guide</i>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This operation is intended for controlled environments, for operations such as "regional
+        /// rotation" or to fall back to the original primary after a global database failover.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the SwitchoverGlobalCluster service method.</param>
+        /// 
+        /// <returns>The response from the SwitchoverGlobalCluster service method, as returned by RDS.</returns>
+        /// <exception cref="Amazon.RDS.Model.DBClusterNotFoundException">
+        /// <code>DBClusterIdentifier</code> doesn't refer to an existing DB cluster.
+        /// </exception>
+        /// <exception cref="Amazon.RDS.Model.GlobalClusterNotFoundException">
+        /// The <code>GlobalClusterIdentifier</code> doesn't refer to an existing global database
+        /// cluster.
+        /// </exception>
+        /// <exception cref="Amazon.RDS.Model.InvalidDBClusterStateException">
+        /// The requested operation can't be performed while the cluster is in this state.
+        /// </exception>
+        /// <exception cref="Amazon.RDS.Model.InvalidGlobalClusterStateException">
+        /// The global cluster is in an invalid state and can't perform the requested operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverGlobalCluster">REST API Reference for SwitchoverGlobalCluster Operation</seealso>
+        public virtual SwitchoverGlobalClusterResponse SwitchoverGlobalCluster(SwitchoverGlobalClusterRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = SwitchoverGlobalClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = SwitchoverGlobalClusterResponseUnmarshaller.Instance;
+
+            return Invoke<SwitchoverGlobalClusterResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the SwitchoverGlobalCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the SwitchoverGlobalCluster operation on AmazonRDSClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndSwitchoverGlobalCluster
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverGlobalCluster">REST API Reference for SwitchoverGlobalCluster Operation</seealso>
+        public virtual IAsyncResult BeginSwitchoverGlobalCluster(SwitchoverGlobalClusterRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = SwitchoverGlobalClusterRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = SwitchoverGlobalClusterResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  SwitchoverGlobalCluster operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginSwitchoverGlobalCluster.</param>
+        /// 
+        /// <returns>Returns a  SwitchoverGlobalClusterResult from RDS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverGlobalCluster">REST API Reference for SwitchoverGlobalCluster Operation</seealso>
+        public virtual SwitchoverGlobalClusterResponse EndSwitchoverGlobalCluster(IAsyncResult asyncResult)
+        {
+            return EndInvoke<SwitchoverGlobalClusterResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  SwitchoverReadReplica
 
         /// <summary>
@@ -11610,5 +11882,28 @@ namespace Amazon.RDS
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonRDSEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

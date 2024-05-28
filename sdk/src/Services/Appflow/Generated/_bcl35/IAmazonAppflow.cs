@@ -258,6 +258,9 @@ namespace Amazon.Appflow
         /// <param name="request">Container for the necessary parameters to execute the CreateFlow service method.</param>
         /// 
         /// <returns>The response from the CreateFlow service method, as returned by Appflow.</returns>
+        /// <exception cref="Amazon.Appflow.Model.AccessDeniedException">
+        /// AppFlow/Requester has invalid or missing permissions.
+        /// </exception>
         /// <exception cref="Amazon.Appflow.Model.ConflictException">
         /// There was a conflict when processing the request (for example, a flow with the given
         /// name already exists within the account. Check for conflicting resource names and try
@@ -1506,6 +1509,9 @@ namespace Amazon.Appflow
         /// <param name="request">Container for the necessary parameters to execute the UpdateFlow service method.</param>
         /// 
         /// <returns>The response from the UpdateFlow service method, as returned by Appflow.</returns>
+        /// <exception cref="Amazon.Appflow.Model.AccessDeniedException">
+        /// AppFlow/Requester has invalid or missing permissions.
+        /// </exception>
         /// <exception cref="Amazon.Appflow.Model.ConflictException">
         /// There was a conflict when processing the request (for example, a flow with the given
         /// name already exists within the account. Check for conflicting resource names and try
@@ -1561,6 +1567,17 @@ namespace Amazon.Appflow
         UpdateFlowResponse EndUpdateFlow(IAsyncResult asyncResult);
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

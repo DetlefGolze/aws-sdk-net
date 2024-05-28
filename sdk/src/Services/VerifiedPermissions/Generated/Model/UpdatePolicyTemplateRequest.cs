@@ -39,7 +39,14 @@ namespace Amazon.VerifiedPermissions.Model
     /// Changes you make to the policy template content are immediately reflected in authorization
     /// decisions that involve all template-linked policies instantiated from this template.
     /// </para>
-    ///  </important>
+    ///  </important> <note> 
+    /// <para>
+    /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+    /// propagate through the service and be visible in the results of other Verified Permissions
+    /// operations.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class UpdatePolicyTemplateRequest : AmazonVerifiedPermissionsRequest
     {
@@ -54,7 +61,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// Specifies a new description to apply to the policy template.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=150)]
+        [AWSProperty(Sensitive=true, Min=0, Max=150)]
         public string Description
         {
             get { return this._description; }
@@ -142,7 +149,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=10000)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=10000)]
         public string Statement
         {
             get { return this._statement; }

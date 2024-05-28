@@ -402,6 +402,13 @@ namespace Amazon.VerifiedPermissions
         /// parameter for this operation. The <code>CognitoUserPoolId</code> and <code>CognitoClientId</code>
         /// are defined by the Amazon Cognito user pool.
         /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
         ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateIdentitySource service method.</param>
@@ -573,6 +580,13 @@ namespace Amazon.VerifiedPermissions
         /// Creating a policy causes it to be validated against the schema in the policy store.
         /// If the policy doesn't pass validation, the operation fails and the policy isn't stored.
         /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
         ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePolicy service method.</param>
@@ -732,6 +746,13 @@ namespace Amazon.VerifiedPermissions
         /// multiple namespaces</a>, Verified Permissions currently supports only one namespace
         /// per policy store.
         /// </para>
+        ///  </note> <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
         ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePolicyStore service method.</param>
@@ -886,6 +907,15 @@ namespace Amazon.VerifiedPermissions
         /// in authorization decisions. The instantiated policy works identically to any other
         /// policy, except that it is dynamically linked to the template. If the template changes,
         /// then any policies that are linked to that template are immediately updated as well.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePolicyTemplate service method.</param>
         /// <param name="cancellationToken">
@@ -2551,12 +2581,34 @@ namespace Amazon.VerifiedPermissions
 
         /// <summary>
         /// Makes an authorization decision about a service request described in the parameters.
-        /// The principal in this request comes from an external identity source. The information
-        /// in the parameters can also define additional context that Verified Permissions can
-        /// include in the evaluation. The request is evaluated against all matching policies
-        /// in the specified policy store. The result of the decision is either <code>Allow</code>
-        /// or <code>Deny</code>, along with a list of the policies that resulted in the decision.
+        /// The principal in this request comes from an external identity source in the form of
+        /// an identity token formatted as a <a href="https://wikipedia.org/wiki/JSON_Web_Token">JSON
+        /// web token (JWT)</a>. The information in the parameters can also define additional
+        /// context that Verified Permissions can include in the evaluation. The request is evaluated
+        /// against all matching policies in the specified policy store. The result of the decision
+        /// is either <code>Allow</code> or <code>Deny</code>, along with a list of the policies
+        /// that resulted in the decision.
         /// 
+        ///  <important> 
+        /// <para>
+        /// If you specify the <code>identityToken</code> parameter, then this operation derives
+        /// the principal from that token. You must not also include that principal in the <code>entities</code>
+        /// parameter or the operation fails and reports a conflict between the two entity sources.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you provide only an <code>accessToken</code>, then you can include the entity as
+        /// part of the <code>entities</code> parameter to provide additional attributes.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// At this time, Verified Permissions accepts tokens from only Amazon Cognito.
+        /// </para>
+        ///  
+        /// <para>
+        /// Verified Permissions validates each token that is specified in a request by checking
+        /// its expiration date and its signature.
+        /// </para>
         ///  <important> 
         /// <para>
         /// If you delete a Amazon Cognito user pool or user, tokens from that deleted pool or
@@ -3306,6 +3358,15 @@ namespace Amazon.VerifiedPermissions
         /// schema change. Existing policies and templates are not re-evaluated against the changed
         /// schema. If you later update a policy, then it is evaluated against the new schema
         /// at that time.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutSchema service method.</param>
         /// <param name="cancellationToken">
@@ -3462,6 +3523,15 @@ namespace Amazon.VerifiedPermissions
         /// Updates the specified identity source to use a new identity provider (IdP) source,
         /// or to change the mapping of identities from the IdP to a different principal entity
         /// type.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateIdentitySource service method.</param>
         /// <param name="cancellationToken">
@@ -3617,12 +3687,55 @@ namespace Amazon.VerifiedPermissions
         /// parameter. You can directly update only static policies. To change a template-linked
         /// policy, you must update the template instead, using <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_UpdatePolicyTemplate.html">UpdatePolicyTemplate</a>.
         /// 
-        ///  <note> 
+        ///  <note> <ul> <li> 
         /// <para>
         /// If policy validation is enabled in the policy store, then updating a static policy
         /// causes Verified Permissions to validate the policy against the schema in the policy
         /// store. If the updated static policy doesn't pass validation, the operation fails and
         /// the update isn't stored.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// When you edit a static policy, You can change only certain elements of a static policy:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The action referenced by the policy. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// A condition clause, such as when and unless. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can't change these elements of a static policy: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Changing a policy from a static policy to a template-linked policy. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Changing the effect of a static policy from permit or forbid. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The principal referenced by a static policy. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The resource referenced by a static policy. 
+        /// </para>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        /// To update a template-linked policy, you must update the template instead. 
+        /// </para>
+        ///  </li> </ul> </note> <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3779,6 +3892,15 @@ namespace Amazon.VerifiedPermissions
 
         /// <summary>
         /// Modifies the validation setting for a policy store.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdatePolicyStore service method.</param>
         /// <param name="cancellationToken">
@@ -3938,7 +4060,14 @@ namespace Amazon.VerifiedPermissions
         /// Changes you make to the policy template content are immediately reflected in authorization
         /// decisions that involve all template-linked policies instantiated from this template.
         /// </para>
-        ///  </important>
+        ///  </important> <note> 
+        /// <para>
+        /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+        /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+        /// propagate through the service and be visible in the results of other Verified Permissions
+        /// operations.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdatePolicyTemplate service method.</param>
         /// <param name="cancellationToken">
@@ -4075,5 +4204,28 @@ namespace Amazon.VerifiedPermissions
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonVerifiedPermissionsEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

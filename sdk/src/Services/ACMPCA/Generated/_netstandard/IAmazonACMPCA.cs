@@ -50,7 +50,7 @@ namespace Amazon.ACMPCA
     /// CA throttles API requests at different rates depending on the operation. Throttling
     /// means that Amazon Web Services Private CA rejects an otherwise valid request because
     /// the request exceeds the operation's quota for the number of requests per second. When
-    /// a request is throttled, Amazon Web Services Private CA returns a <a href="https://docs.aws.amazon.com/acm-pca/latest/APIReference/CommonErrors.html">ThrottlingException</a>
+    /// a request is throttled, Amazon Web Services Private CA returns a <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/CommonErrors.html">ThrottlingException</a>
     /// error. Amazon Web Services Private CA does not guarantee a minimum request rate for
     /// APIs. 
     /// </para>
@@ -205,7 +205,9 @@ namespace Amazon.ACMPCA
         /// action and revoke them with the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_DeletePermission.html">DeletePermission</a>
         /// action.
         /// </para>
-        ///  <p class="title"> <b>About Permissions</b> 
+        ///  
+        /// <para>
+        ///  <b>About Permissions</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -343,7 +345,9 @@ namespace Amazon.ACMPCA
         /// action and listed with the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_ListPermissions.html">ListPermissions</a>
         /// action. 
         /// </para>
-        ///  <p class="title"> <b>About Permissions</b> 
+        ///  
+        /// <para>
+        ///  <b>About Permissions</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -414,7 +418,9 @@ namespace Amazon.ACMPCA
         /// The current policy can be shown with <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetPolicy.html">GetPolicy</a>
         /// and updated with <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_PutPolicy.html">PutPolicy</a>.
         /// </para>
-        ///  <p class="title"> <b>About Policies</b> 
+        ///  
+        /// <para>
+        ///  <b>About Policies</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -697,7 +703,9 @@ namespace Amazon.ACMPCA
         /// The policy can be attached or updated with <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_PutPolicy.html">PutPolicy</a>
         /// and removed with <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_DeletePolicy.html">DeletePolicy</a>.
         /// </para>
-        ///  <p class="title"> <b>About Policies</b> 
+        ///  
+        /// <para>
+        ///  <b>About Policies</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1052,7 +1060,9 @@ namespace Amazon.ACMPCA
         /// action and revoked with the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_DeletePermission.html">DeletePermission</a>
         /// action.
         /// </para>
-        ///  <p class="title"> <b>About Permissions</b> 
+        ///  
+        /// <para>
+        ///  <b>About Permissions</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1153,7 +1163,9 @@ namespace Amazon.ACMPCA
         /// The policy can be displayed with <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_GetPolicy.html">GetPolicy</a>
         /// and removed with <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_DeletePolicy.html">DeletePolicy</a>.
         /// </para>
-        ///  <p class="title"> <b>About Policies</b> 
+        ///  
+        /// <para>
+        ///  <b>About Policies</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1479,6 +1491,17 @@ namespace Amazon.ACMPCA
         Task<UpdateCertificateAuthorityResponse> UpdateCertificateAuthorityAsync(UpdateCertificateAuthorityRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

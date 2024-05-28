@@ -54,7 +54,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// In <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
     /// mode</a> </i>, you can send messages only to verified phone numbers. After you test
     /// your app while in the sandbox environment, you can move out of the sandbox and into
-    /// production. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+    /// production. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html">
     /// SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon Cognito Developer
     /// Guide</i>.
     /// </para>
@@ -75,10 +75,27 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// In either case, the user will be in the <code>FORCE_CHANGE_PASSWORD</code> state until
     /// they sign in and change their password.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests
+    /// for this API operation. For this operation, you must use IAM credentials to authorize
+    /// requests, and you must grant yourself the corresponding IAM permission in a policy.
+    /// </para>
     ///  
     /// <para>
-    ///  <code>AdminCreateUser</code> requires developer credentials.
+    ///  <b>Learn more</b> 
     /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html">Signing
+    /// Amazon Web Services API Requests</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
+    /// the Amazon Cognito user pools API and user pool endpoints</a> 
+    /// </para>
+    ///  </li> </ul> </note>
     /// </summary>
     public partial class AdminCreateUserRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -239,9 +256,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         ///  
         /// <para>
         /// The temporary password can only be used until the user account expiration limit that
-        /// you specified when you created the user pool. To reset the account after that time
-        /// limit, you must call <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code>
-        /// for the <code>MessageAction</code> parameter.
+        /// you set for your user pool. To reset the account after that time limit, you must call
+        /// <code>AdminCreateUser</code> again and specify <code>RESEND</code> for the <code>MessageAction</code>
+        /// parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=256)]
@@ -315,9 +332,26 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The username for the user. Must be unique within the user pool. Must be a UTF-8 string
-        /// between 1 and 128 characters. After the user is created, the username can't be changed.
+        /// The value that you want to set as the username sign-in attribute. The following conditions
+        /// apply to the username parameter.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The username can't be a duplicate of another username in the same user pool.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You can't change the value of a username after you create it.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You can only provide a value if usernames are a valid sign-in attribute for your user
+        /// pool. If your user pool only supports phone numbers or email addresses as sign-in
+        /// attributes, Amazon Cognito automatically generates a username value. For more information,
+        /// see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases">Customizing
+        /// sign-in attributes</a>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
         public string Username

@@ -72,6 +72,7 @@ namespace Amazon.SageMaker.Model
         private string _modelPackageGroupName;
         private string _modelPackageName;
         private string _samplePayloadUrl;
+        private SkipModelValidation _skipModelValidation;
         private SourceAlgorithmSpecification _sourceAlgorithmSpecification;
         private List<Tag> _tags = new List<Tag>();
         private string _task;
@@ -387,6 +388,24 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SkipModelValidation. 
+        /// <para>
+        /// Indicates if you want to skip model validation.
+        /// </para>
+        /// </summary>
+        public SkipModelValidation SkipModelValidation
+        {
+            get { return this._skipModelValidation; }
+            set { this._skipModelValidation = value; }
+        }
+
+        // Check to see if SkipModelValidation property is set
+        internal bool IsSetSkipModelValidation()
+        {
+            return this._skipModelValidation != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SourceAlgorithmSpecification. 
         /// <para>
         /// Details about the algorithm that was used to create the model package.
@@ -410,6 +429,12 @@ namespace Amazon.SageMaker.Model
         /// A list of key value pairs associated with the model. For more information, see <a
         /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging Amazon
         /// Web Services resources</a> in the <i>Amazon Web Services General Reference Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you supply <code>ModelPackageGroupName</code>, your model package belongs to the
+        /// model group you specify and uses the tags associated with the model group. In this
+        /// case, you cannot supply a <code>tag</code> argument. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]

@@ -205,7 +205,9 @@ namespace Amazon.Snowball
         /// about Region availability, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4">Amazon
         /// Web Services Regional Services</a>.
         /// </para>
-        ///  </note>  <p class="title"> <b>Snow Family devices and their capacities.</b> 
+        ///  </note>  
+        /// <para>
+        ///  <b>Snow Family devices and their capacities.</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -1044,6 +1046,17 @@ namespace Amazon.Snowball
         Task<UpdateLongTermPricingResponse> UpdateLongTermPricingAsync(UpdateLongTermPricingRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

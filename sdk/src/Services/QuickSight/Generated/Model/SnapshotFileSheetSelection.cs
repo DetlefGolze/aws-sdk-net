@@ -52,7 +52,7 @@ namespace Amazon.QuickSight.Model
         ///  </li> <li> 
         /// <para>
         ///  <code>SELECTED_VISUALS</code> - Select the visual that you want to add to the snapshot.
-        /// This value is required if the snapshot is a CSV.
+        /// This value is required if the snapshot is a CSV or Excel workbook.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -73,7 +73,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property SheetId. 
         /// <para>
         /// The sheet ID of the dashboard to generate the snapshot artifact from. This value is
-        /// required for CSV or PDF format types.
+        /// required for CSV, Excel, and PDF format types.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -94,10 +94,13 @@ namespace Amazon.QuickSight.Model
         /// <para>
         ///  A structure that lists the IDs of the visuals in the selected sheet. Supported visual
         /// types are table, pivot table visuals. This value is required if you are generating
-        /// a CSV. This value supports a maximum of 1 visual ID. 
+        /// a CSV or Excel workbook. This value supports a maximum of 1 visual ID for CSV and
+        /// 5 visual IDs across up to 5 sheet selections for Excel. If you are generating an Excel
+        /// workbook, the order of the visual IDs provided in this structure determines the order
+        /// of the worksheets in the Excel file. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1)]
+        [AWSProperty(Min=1, Max=5)]
         public List<string> VisualIds
         {
             get { return this._visualIds; }

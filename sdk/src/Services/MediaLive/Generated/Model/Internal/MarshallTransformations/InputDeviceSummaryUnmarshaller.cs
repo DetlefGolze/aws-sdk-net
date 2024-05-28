@@ -70,6 +70,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.Arn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("availabilityZone", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AvailabilityZone = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("connectionState", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -106,6 +112,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.MacAddress = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("medialiveInputArns", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.MedialiveInputArns = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("name", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -116,6 +128,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = InputDeviceNetworkSettingsUnmarshaller.Instance;
                     unmarshalledObject.NetworkSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("outputType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.OutputType = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("serialNumber", targetDepth))

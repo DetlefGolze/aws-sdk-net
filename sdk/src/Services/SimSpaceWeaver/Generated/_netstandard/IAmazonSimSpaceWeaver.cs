@@ -31,11 +31,10 @@ namespace Amazon.SimSpaceWeaver
     /// <summary>
     /// Interface for accessing SimSpaceWeaver
     ///
-    /// SimSpace Weaver (SimSpace Weaver) is a managed service that you can use to build and
-    /// operate large-scale spatial simulations in the Amazon Web Services Cloud. For example,
-    /// you can create a digital twin of a city, crowd simulations with millions of people
-    /// and objects, and massively multiplayer games with hundreds of thousands of connected
-    /// players. For more information about SimSpace Weaver, see the <i> <a href="https://docs.aws.amazon.com/simspaceweaver/latest/userguide/">SimSpace
+    /// SimSpace Weaver (SimSpace Weaver) is a service that you can use to build and run large-scale
+    /// spatial simulations in the Amazon Web Services Cloud. For example, you can create
+    /// crowd simulations, large real-world environments, and immersive and interactive experiences.
+    /// For more information about SimSpace Weaver, see the <i> <a href="https://docs.aws.amazon.com/simspaceweaver/latest/userguide/">SimSpace
     /// Weaver User Guide</a> </i>.
     /// 
     ///  
@@ -616,6 +615,17 @@ namespace Amazon.SimSpaceWeaver
         Task<UntagResourceResponse> UntagResourceAsync(UntagResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

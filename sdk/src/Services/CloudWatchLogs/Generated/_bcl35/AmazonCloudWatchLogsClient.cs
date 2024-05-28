@@ -614,8 +614,8 @@ namespace Amazon.CloudWatchLogs
         #region  CreateLogGroup
 
         /// <summary>
-        /// Creates a log group with the specified name. You can create up to 20,000 log groups
-        /// per account.
+        /// Creates a log group with the specified name. You can create up to 1,000,000 log groups
+        /// per Region per account.
         /// 
         ///  
         /// <para>
@@ -3483,9 +3483,8 @@ namespace Amazon.CloudWatchLogs
         /// </para>
         ///  
         /// <para>
-        /// CloudWatch Logs disables a metric filter if it generates 1,000 different name/value
-        /// pairs for your specified dimensions within a certain amount of time. This helps to
-        /// prevent accidental high charges.
+        /// CloudWatch Logs might disable a metric filter if it generates 1,000 different name/value
+        /// pairs for your specified dimensions within one hour.
         /// </para>
         ///  
         /// <para>
@@ -3730,6 +3729,14 @@ namespace Amazon.CloudWatchLogs
         /// its lower retention setting until 72 hours after the previous retention period ends.
         /// Alternatively, wait to change the retention setting until you confirm that the earlier
         /// log events are deleted. 
+        /// </para>
+        ///  
+        /// <para>
+        /// When log events reach their retention setting they are marked for deletion. After
+        /// they are marked for deletion, they do not add to your archival storage costs anymore,
+        /// even if they are not actually deleted until later. These log events marked for deletion
+        /// are also not included when you use an API to retrieve the <code>storedBytes</code>
+        /// value to see how many bytes a log group is storing.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4468,5 +4475,28 @@ namespace Amazon.CloudWatchLogs
 
         #endregion
         
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
+        {
+            var requestContext = new RequestContext(false, CreateSigner())
+            {
+                ClientConfig = Config,
+                OriginalRequest = request,
+                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+            };
+
+            var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);
+            var resolver = new AmazonCloudWatchLogsEndpointResolver();
+            return resolver.GetEndpoint(executionContext);
+        }
+
+        #endregion
+
     }
 }

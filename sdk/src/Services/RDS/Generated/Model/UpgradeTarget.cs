@@ -41,13 +41,14 @@ namespace Amazon.RDS.Model
         private List<string> _supportedEngineModes = new List<string>();
         private bool? _supportsBabelfish;
         private bool? _supportsGlobalDatabases;
+        private bool? _supportsLocalWriteForwarding;
         private bool? _supportsParallelQuery;
 
         /// <summary>
         /// Gets and sets the property AutoUpgrade. 
         /// <para>
-        /// A value that indicates whether the target version is applied to any source DB instances
-        /// that have <code>AutoMinorVersionUpgrade</code> set to true.
+        /// Indicates whether the target version is applied to any source DB instances that have
+        /// <code>AutoMinorVersionUpgrade</code> set to true.
         /// </para>
         /// </summary>
         public bool AutoUpgrade
@@ -119,8 +120,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property IsMajorVersionUpgrade. 
         /// <para>
-        /// A value that indicates whether upgrading to the target version requires upgrading
-        /// the major version of the database engine.
+        /// Indicates whether upgrading to the target version requires upgrading the major version
+        /// of the database engine.
         /// </para>
         /// </summary>
         public bool IsMajorVersionUpgrade
@@ -156,8 +157,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SupportsBabelfish. 
         /// <para>
-        /// A value that indicates whether you can use Babelfish for Aurora PostgreSQL with the
-        /// target engine version.
+        /// Indicates whether you can use Babelfish for Aurora PostgreSQL with the target engine
+        /// version.
         /// </para>
         /// </summary>
         public bool SupportsBabelfish
@@ -175,8 +176,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SupportsGlobalDatabases. 
         /// <para>
-        /// A value that indicates whether you can use Aurora global databases with the target
-        /// engine version.
+        /// Indicates whether you can use Aurora global databases with the target engine version.
         /// </para>
         /// </summary>
         public bool SupportsGlobalDatabases
@@ -192,10 +192,33 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SupportsLocalWriteForwarding. 
+        /// <para>
+        /// Indicates whether the target engine version supports forwarding write operations from
+        /// reader DB instances to the writer DB instance in the DB cluster. By default, write
+        /// operations aren't allowed on reader DB instances.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid for: Aurora DB clusters only
+        /// </para>
+        /// </summary>
+        public bool SupportsLocalWriteForwarding
+        {
+            get { return this._supportsLocalWriteForwarding.GetValueOrDefault(); }
+            set { this._supportsLocalWriteForwarding = value; }
+        }
+
+        // Check to see if SupportsLocalWriteForwarding property is set
+        internal bool IsSetSupportsLocalWriteForwarding()
+        {
+            return this._supportsLocalWriteForwarding.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property SupportsParallelQuery. 
         /// <para>
-        /// A value that indicates whether you can use Aurora parallel query with the target engine
-        /// version.
+        /// Indicates whether you can use Aurora parallel query with the target engine version.
         /// </para>
         /// </summary>
         public bool SupportsParallelQuery

@@ -35,7 +35,9 @@ namespace Amazon.Omics.Model
     {
         private string _arn;
         private DateTime? _creationTime;
+        private CreationType _creationType;
         private string _description;
+        private ETag _etag;
         private FileType _fileType;
         private string _id;
         private string _name;
@@ -86,6 +88,24 @@ namespace Amazon.Omics.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CreationType. 
+        /// <para>
+        ///  The creation type of the read set. 
+        /// </para>
+        /// </summary>
+        public CreationType CreationType
+        {
+            get { return this._creationType; }
+            set { this._creationType = value; }
+        }
+
+        // Check to see if CreationType property is set
+        internal bool IsSetCreationType()
+        {
+            return this._creationType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         /// The read set's description.
@@ -102,6 +122,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Etag. 
+        /// <para>
+        ///  The entity tag (ETag) is a hash of the object representing its semantic content.
+        /// 
+        /// </para>
+        /// </summary>
+        public ETag Etag
+        {
+            get { return this._etag; }
+            set { this._etag = value; }
+        }
+
+        // Check to see if Etag property is set
+        internal bool IsSetEtag()
+        {
+            return this._etag != null;
         }
 
         /// <summary>

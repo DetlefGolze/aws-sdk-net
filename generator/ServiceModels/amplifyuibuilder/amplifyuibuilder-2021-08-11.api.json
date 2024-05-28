@@ -400,6 +400,15 @@
         "state":{"shape":"MutationActionSetStateParameter"}
       }
     },
+    "ApiConfiguration":{
+      "type":"structure",
+      "members":{
+        "graphQLConfig":{"shape":"GraphQLRenderConfig"},
+        "dataStoreConfig":{"shape":"DataStoreRenderConfig"},
+        "noApiConfig":{"shape":"NoApiRenderConfig"}
+      },
+      "union":true
+    },
     "AppId":{
       "type":"string",
       "max":20,
@@ -413,6 +422,19 @@
     "Boolean":{
       "type":"boolean",
       "box":true
+    },
+    "CodegenDependencies":{
+      "type":"list",
+      "member":{"shape":"CodegenDependency"}
+    },
+    "CodegenDependency":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "supportedVersion":{"shape":"String"},
+        "isSemVer":{"shape":"Boolean"},
+        "reason":{"shape":"String"}
+      }
     },
     "CodegenFeatureFlags":{
       "type":"structure",
@@ -554,7 +576,8 @@
         "asset":{"shape":"CodegenJobAsset"},
         "tags":{"shape":"Tags"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
-        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"}
+        "modifiedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "dependencies":{"shape":"CodegenDependencies"}
       }
     },
     "CodegenJobAsset":{
@@ -1004,6 +1027,11 @@
         "entity":{"shape":"Theme"}
       },
       "payload":"entity"
+    },
+    "DataStoreRenderConfig":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteComponentRequest":{
       "type":"structure",
@@ -1645,6 +1673,23 @@
       },
       "payload":"theme"
     },
+    "GraphQLRenderConfig":{
+      "type":"structure",
+      "required":[
+        "typesFilePath",
+        "queriesFilePath",
+        "mutationsFilePath",
+        "subscriptionsFilePath",
+        "fragmentsFilePath"
+      ],
+      "members":{
+        "typesFilePath":{"shape":"String"},
+        "queriesFilePath":{"shape":"String"},
+        "mutationsFilePath":{"shape":"String"},
+        "subscriptionsFilePath":{"shape":"String"},
+        "fragmentsFilePath":{"shape":"String"}
+      }
+    },
     "IdentifierList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1885,6 +1930,11 @@
         "set":{"shape":"ComponentProperty"}
       }
     },
+    "NoApiRenderConfig":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "NumValues":{
       "type":"list",
       "member":{"shape":"Integer"}
@@ -1943,6 +1993,11 @@
       },
       "payload":"body"
     },
+    "ReactCodegenDependencies":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
     "ReactStartCodegenJobData":{
       "type":"structure",
       "members":{
@@ -1950,7 +2005,9 @@
         "target":{"shape":"JSTarget"},
         "script":{"shape":"JSScript"},
         "renderTypeDeclarations":{"shape":"Boolean"},
-        "inlineSourceMap":{"shape":"Boolean"}
+        "inlineSourceMap":{"shape":"Boolean"},
+        "apiConfiguration":{"shape":"ApiConfiguration"},
+        "dependencies":{"shape":"ReactCodegenDependencies"}
       }
     },
     "RefreshTokenRequest":{

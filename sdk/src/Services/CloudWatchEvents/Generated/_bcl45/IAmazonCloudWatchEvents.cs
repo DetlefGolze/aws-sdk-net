@@ -2676,10 +2676,10 @@ namespace Amazon.CloudWatchEvents
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Creating rules with built-in targets is supported only in the Management Console.
-        /// The built-in targets are <code>EC2 CreateSnapshot API call</code>, <code>EC2 RebootInstances
-        /// API call</code>, <code>EC2 StopInstances API call</code>, and <code>EC2 TerminateInstances
-        /// API call</code>. 
+        /// Creating rules with built-in targets is supported only in the Amazon Web Services
+        /// Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>,
+        /// <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>,
+        /// and <code>EC2 TerminateInstances API call</code>. 
         /// </para>
         ///  
         /// <para>
@@ -2921,10 +2921,10 @@ namespace Amazon.CloudWatchEvents
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Creating rules with built-in targets is supported only in the Management Console.
-        /// The built-in targets are <code>EC2 CreateSnapshot API call</code>, <code>EC2 RebootInstances
-        /// API call</code>, <code>EC2 StopInstances API call</code>, and <code>EC2 TerminateInstances
-        /// API call</code>. 
+        /// Creating rules with built-in targets is supported only in the Amazon Web Services
+        /// Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>,
+        /// <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>,
+        /// and <code>EC2 TerminateInstances API call</code>. 
         /// </para>
         ///  
         /// <para>
@@ -3664,6 +3664,17 @@ namespace Amazon.CloudWatchEvents
         Task<UpdateConnectionResponse> UpdateConnectionAsync(UpdateConnectionRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

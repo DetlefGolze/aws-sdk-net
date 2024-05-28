@@ -36,6 +36,15 @@ namespace Amazon.VerifiedPermissions.Model
     /// in authorization decisions. The instantiated policy works identically to any other
     /// policy, except that it is dynamically linked to the template. If the template changes,
     /// then any policies that are linked to that template are immediately updated as well.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
+    /// propagate through the service and be visible in the results of other Verified Permissions
+    /// operations.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class CreatePolicyTemplateRequest : AmazonVerifiedPermissionsRequest
     {
@@ -84,7 +93,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// Specifies a description for the policy template.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=150)]
+        [AWSProperty(Sensitive=true, Min=0, Max=150)]
         public string Description
         {
             get { return this._description; }
@@ -123,7 +132,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// the Cedar policy language.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=10000)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=10000)]
         public string Statement
         {
             get { return this._statement; }

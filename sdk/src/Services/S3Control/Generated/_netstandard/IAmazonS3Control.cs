@@ -561,7 +561,9 @@ namespace Amazon.S3Control
         /// using the access point ARN, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples">Examples</a>
         /// section.
         /// </para>
-        ///  <p class="title"> <b>Related Resources</b> 
+        ///  
+        /// <para>
+        ///  <b>Related Resources</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -3478,6 +3480,17 @@ namespace Amazon.S3Control
         Task<UpdateJobStatusResponse> UpdateJobStatusAsync(UpdateJobStatusRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
+                
+        #region DetermineServiceOperationEndpoint
+
+        /// <summary>
+        /// Returns the endpoint that will be used for a particular request.
+        /// </summary>
+        /// <param name="request">Request for the desired service operation.</param>
+        /// <returns>The resolved endpoint for the given request.</returns>
+        Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request);
         
+        #endregion
+
     }
 }

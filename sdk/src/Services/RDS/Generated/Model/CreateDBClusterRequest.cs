@@ -76,6 +76,7 @@ namespace Amazon.RDS.Model
         private bool? _enableGlobalWriteForwarding;
         private bool? _enableHttpEndpoint;
         private bool? _enableIAMDatabaseAuthentication;
+        private bool? _enableLocalWriteForwarding;
         private bool? _enablePerformanceInsights;
         private string _engine;
         private string _engineMode;
@@ -717,6 +718,29 @@ namespace Amazon.RDS.Model
         internal bool IsSetEnableIAMDatabaseAuthentication()
         {
             return this._enableIAMDatabaseAuthentication.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnableLocalWriteForwarding. 
+        /// <para>
+        /// Specifies whether read replicas can forward write operations to the writer DB instance
+        /// in the DB cluster. By default, write operations aren't allowed on reader DB instances.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid for: Aurora DB clusters only
+        /// </para>
+        /// </summary>
+        public bool EnableLocalWriteForwarding
+        {
+            get { return this._enableLocalWriteForwarding.GetValueOrDefault(); }
+            set { this._enableLocalWriteForwarding = value; }
+        }
+
+        // Check to see if EnableLocalWriteForwarding property is set
+        internal bool IsSetEnableLocalWriteForwarding()
+        {
+            return this._enableLocalWriteForwarding.HasValue; 
         }
 
         /// <summary>
@@ -1814,7 +1838,13 @@ namespace Amazon.RDS.Model
         /// <para>
         /// Multi-AZ DB clusters - <code>io1</code> 
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// When you create an Aurora DB cluster with the storage type set to <code>aurora-iopt1</code>,
+        /// the storage type is returned in the response. The storage type isn't returned when
+        /// you set it to <code>aurora</code>.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string StorageType
         {

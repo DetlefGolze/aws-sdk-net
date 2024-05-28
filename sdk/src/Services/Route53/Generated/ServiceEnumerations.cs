@@ -335,6 +335,10 @@ namespace Amazon.Route53
         /// </summary>
         public static readonly CloudWatchRegion EuWest3 = new CloudWatchRegion("eu-west-3");
         /// <summary>
+        /// Constant IlCentral1 for CloudWatchRegion
+        /// </summary>
+        public static readonly CloudWatchRegion IlCentral1 = new CloudWatchRegion("il-central-1");
+        /// <summary>
         /// Constant MeCentral1 for CloudWatchRegion
         /// </summary>
         public static readonly CloudWatchRegion MeCentral1 = new CloudWatchRegion("me-central-1");
@@ -675,6 +679,52 @@ namespace Amazon.Route53
 
 
     /// <summary>
+    /// Constants used for properties of type HostedZoneType.
+    /// </summary>
+    public class HostedZoneType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant PrivateHostedZone for HostedZoneType
+        /// </summary>
+        public static readonly HostedZoneType PrivateHostedZone = new HostedZoneType("PrivateHostedZone");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public HostedZoneType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static HostedZoneType FindValue(string value)
+        {
+            return FindValue<HostedZoneType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator HostedZoneType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type InsufficientDataHealthStatus.
     /// </summary>
     public class InsufficientDataHealthStatus : ConstantClass
@@ -930,6 +980,10 @@ namespace Amazon.Route53
         /// Constant EuWest3 for ResourceRecordSetRegion
         /// </summary>
         public static readonly ResourceRecordSetRegion EuWest3 = new ResourceRecordSetRegion("eu-west-3");
+        /// <summary>
+        /// Constant IlCentral1 for ResourceRecordSetRegion
+        /// </summary>
+        public static readonly ResourceRecordSetRegion IlCentral1 = new ResourceRecordSetRegion("il-central-1");
         /// <summary>
         /// Constant MeCentral1 for ResourceRecordSetRegion
         /// </summary>
@@ -1336,6 +1390,10 @@ namespace Amazon.Route53
         /// Constant EuWest3 for VPCRegion
         /// </summary>
         public static readonly VPCRegion EuWest3 = new VPCRegion("eu-west-3");
+        /// <summary>
+        /// Constant IlCentral1 for VPCRegion
+        /// </summary>
+        public static readonly VPCRegion IlCentral1 = new VPCRegion("il-central-1");
         /// <summary>
         /// Constant MeCentral1 for VPCRegion
         /// </summary>

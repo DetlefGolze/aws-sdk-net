@@ -50,7 +50,7 @@ namespace Amazon.CleanRooms.Model
         /// The columns within the underlying Glue table that can be utilized within collaborations.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=100)]
+        [AWSProperty(Required=true, Min=1, Max=225)]
         public List<string> AllowedColumns
         {
             get { return this._allowedColumns; }
@@ -85,9 +85,8 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property AnalysisRuleTypes. 
         /// <para>
-        /// The types of analysis rules associated with this configured table. Valid values are
-        /// `AGGREGATION` and `LIST`. Currently, only one analysis rule may be associated with
-        /// a configured table.
+        /// The types of analysis rules associated with this configured table. Currently, only
+        /// one analysis rule may be associated with a configured table.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

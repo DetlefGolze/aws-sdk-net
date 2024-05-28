@@ -25,6 +25,7 @@ using System.Net;
 
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
+using Amazon.Runtime.Internal.Auth;
 
 namespace Amazon.CognitoIdentityProvider.Model
 {
@@ -33,6 +34,16 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// Use this API to register a user's entered time-based one-time password (TOTP) code
     /// and mark the user's software token MFA status as "verified" if successful. The request
     /// takes an access token or a session string, but not both.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests
+    /// for this API operation. For this operation, you can't use IAM credentials to authorize
+    /// requests, and you can't grant IAM permissions in policies. For more information about
+    /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
+    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class VerifySoftwareTokenRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -67,6 +78,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// The friendly device name.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0, Max=131072)]
         public string FriendlyDeviceName
         {
             get { return this._friendlyDeviceName; }
@@ -117,5 +129,13 @@ namespace Amazon.CognitoIdentityProvider.Model
             return this._userCode != null;
         }
 
+        /// <summary>
+        /// Get the signer to use for this request.
+        /// </summary>
+        /// <returns>A signer for this request.</returns>
+        override protected AbstractAWSSigner CreateSigner()
+        {
+            return new NullSigner();
+        }
     }
 }

@@ -25,6 +25,68 @@ namespace Amazon.LookoutEquipment
 {
 
     /// <summary>
+    /// Constants used for properties of type AutoPromotionResult.
+    /// </summary>
+    public class AutoPromotionResult : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MODEL_NOT_PROMOTED for AutoPromotionResult
+        /// </summary>
+        public static readonly AutoPromotionResult MODEL_NOT_PROMOTED = new AutoPromotionResult("MODEL_NOT_PROMOTED");
+        /// <summary>
+        /// Constant MODEL_PROMOTED for AutoPromotionResult
+        /// </summary>
+        public static readonly AutoPromotionResult MODEL_PROMOTED = new AutoPromotionResult("MODEL_PROMOTED");
+        /// <summary>
+        /// Constant RETRAINING_CANCELLED for AutoPromotionResult
+        /// </summary>
+        public static readonly AutoPromotionResult RETRAINING_CANCELLED = new AutoPromotionResult("RETRAINING_CANCELLED");
+        /// <summary>
+        /// Constant RETRAINING_CUSTOMER_ERROR for AutoPromotionResult
+        /// </summary>
+        public static readonly AutoPromotionResult RETRAINING_CUSTOMER_ERROR = new AutoPromotionResult("RETRAINING_CUSTOMER_ERROR");
+        /// <summary>
+        /// Constant RETRAINING_INTERNAL_ERROR for AutoPromotionResult
+        /// </summary>
+        public static readonly AutoPromotionResult RETRAINING_INTERNAL_ERROR = new AutoPromotionResult("RETRAINING_INTERNAL_ERROR");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AutoPromotionResult(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AutoPromotionResult FindValue(string value)
+        {
+            return FindValue<AutoPromotionResult>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AutoPromotionResult(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type DatasetStatus.
     /// </summary>
     public class DatasetStatus : ConstantClass
@@ -38,6 +100,10 @@ namespace Amazon.LookoutEquipment
         /// Constant CREATED for DatasetStatus
         /// </summary>
         public static readonly DatasetStatus CREATED = new DatasetStatus("CREATED");
+        /// <summary>
+        /// Constant IMPORT_IN_PROGRESS for DatasetStatus
+        /// </summary>
+        public static readonly DatasetStatus IMPORT_IN_PROGRESS = new DatasetStatus("IMPORT_IN_PROGRESS");
         /// <summary>
         /// Constant INGESTION_IN_PROGRESS for DatasetStatus
         /// </summary>
@@ -134,6 +200,60 @@ namespace Amazon.LookoutEquipment
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator DataUploadFrequency(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type InferenceDataImportStrategy.
+    /// </summary>
+    public class InferenceDataImportStrategy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ADD_WHEN_EMPTY for InferenceDataImportStrategy
+        /// </summary>
+        public static readonly InferenceDataImportStrategy ADD_WHEN_EMPTY = new InferenceDataImportStrategy("ADD_WHEN_EMPTY");
+        /// <summary>
+        /// Constant NO_IMPORT for InferenceDataImportStrategy
+        /// </summary>
+        public static readonly InferenceDataImportStrategy NO_IMPORT = new InferenceDataImportStrategy("NO_IMPORT");
+        /// <summary>
+        /// Constant OVERWRITE for InferenceDataImportStrategy
+        /// </summary>
+        public static readonly InferenceDataImportStrategy OVERWRITE = new InferenceDataImportStrategy("OVERWRITE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InferenceDataImportStrategy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InferenceDataImportStrategy FindValue(string value)
+        {
+            return FindValue<InferenceDataImportStrategy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InferenceDataImportStrategy(string value)
         {
             return FindValue(value);
         }
@@ -262,6 +382,10 @@ namespace Amazon.LookoutEquipment
         /// Constant FAILED for IngestionJobStatus
         /// </summary>
         public static readonly IngestionJobStatus FAILED = new IngestionJobStatus("FAILED");
+        /// <summary>
+        /// Constant IMPORT_IN_PROGRESS for IngestionJobStatus
+        /// </summary>
+        public static readonly IngestionJobStatus IMPORT_IN_PROGRESS = new IngestionJobStatus("IMPORT_IN_PROGRESS");
         /// <summary>
         /// Constant IN_PROGRESS for IngestionJobStatus
         /// </summary>
@@ -411,6 +535,56 @@ namespace Amazon.LookoutEquipment
 
 
     /// <summary>
+    /// Constants used for properties of type ModelPromoteMode.
+    /// </summary>
+    public class ModelPromoteMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MANAGED for ModelPromoteMode
+        /// </summary>
+        public static readonly ModelPromoteMode MANAGED = new ModelPromoteMode("MANAGED");
+        /// <summary>
+        /// Constant MANUAL for ModelPromoteMode
+        /// </summary>
+        public static readonly ModelPromoteMode MANUAL = new ModelPromoteMode("MANUAL");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ModelPromoteMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ModelPromoteMode FindValue(string value)
+        {
+            return FindValue<ModelPromoteMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ModelPromoteMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ModelStatus.
     /// </summary>
     public class ModelStatus : ConstantClass
@@ -420,6 +594,10 @@ namespace Amazon.LookoutEquipment
         /// Constant FAILED for ModelStatus
         /// </summary>
         public static readonly ModelStatus FAILED = new ModelStatus("FAILED");
+        /// <summary>
+        /// Constant IMPORT_IN_PROGRESS for ModelStatus
+        /// </summary>
+        public static readonly ModelStatus IMPORT_IN_PROGRESS = new ModelStatus("IMPORT_IN_PROGRESS");
         /// <summary>
         /// Constant IN_PROGRESS for ModelStatus
         /// </summary>
@@ -458,6 +636,122 @@ namespace Amazon.LookoutEquipment
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ModelStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ModelVersionSourceType.
+    /// </summary>
+    public class ModelVersionSourceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant IMPORT for ModelVersionSourceType
+        /// </summary>
+        public static readonly ModelVersionSourceType IMPORT = new ModelVersionSourceType("IMPORT");
+        /// <summary>
+        /// Constant RETRAINING for ModelVersionSourceType
+        /// </summary>
+        public static readonly ModelVersionSourceType RETRAINING = new ModelVersionSourceType("RETRAINING");
+        /// <summary>
+        /// Constant TRAINING for ModelVersionSourceType
+        /// </summary>
+        public static readonly ModelVersionSourceType TRAINING = new ModelVersionSourceType("TRAINING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ModelVersionSourceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ModelVersionSourceType FindValue(string value)
+        {
+            return FindValue<ModelVersionSourceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ModelVersionSourceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ModelVersionStatus.
+    /// </summary>
+    public class ModelVersionStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CANCELED for ModelVersionStatus
+        /// </summary>
+        public static readonly ModelVersionStatus CANCELED = new ModelVersionStatus("CANCELED");
+        /// <summary>
+        /// Constant FAILED for ModelVersionStatus
+        /// </summary>
+        public static readonly ModelVersionStatus FAILED = new ModelVersionStatus("FAILED");
+        /// <summary>
+        /// Constant IMPORT_IN_PROGRESS for ModelVersionStatus
+        /// </summary>
+        public static readonly ModelVersionStatus IMPORT_IN_PROGRESS = new ModelVersionStatus("IMPORT_IN_PROGRESS");
+        /// <summary>
+        /// Constant IN_PROGRESS for ModelVersionStatus
+        /// </summary>
+        public static readonly ModelVersionStatus IN_PROGRESS = new ModelVersionStatus("IN_PROGRESS");
+        /// <summary>
+        /// Constant SUCCESS for ModelVersionStatus
+        /// </summary>
+        public static readonly ModelVersionStatus SUCCESS = new ModelVersionStatus("SUCCESS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ModelVersionStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ModelVersionStatus FindValue(string value)
+        {
+            return FindValue<ModelVersionStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ModelVersionStatus(string value)
         {
             return FindValue(value);
         }
@@ -512,6 +806,64 @@ namespace Amazon.LookoutEquipment
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator Monotonicity(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RetrainingSchedulerStatus.
+    /// </summary>
+    public class RetrainingSchedulerStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant PENDING for RetrainingSchedulerStatus
+        /// </summary>
+        public static readonly RetrainingSchedulerStatus PENDING = new RetrainingSchedulerStatus("PENDING");
+        /// <summary>
+        /// Constant RUNNING for RetrainingSchedulerStatus
+        /// </summary>
+        public static readonly RetrainingSchedulerStatus RUNNING = new RetrainingSchedulerStatus("RUNNING");
+        /// <summary>
+        /// Constant STOPPED for RetrainingSchedulerStatus
+        /// </summary>
+        public static readonly RetrainingSchedulerStatus STOPPED = new RetrainingSchedulerStatus("STOPPED");
+        /// <summary>
+        /// Constant STOPPING for RetrainingSchedulerStatus
+        /// </summary>
+        public static readonly RetrainingSchedulerStatus STOPPING = new RetrainingSchedulerStatus("STOPPING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RetrainingSchedulerStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RetrainingSchedulerStatus FindValue(string value)
+        {
+            return FindValue<RetrainingSchedulerStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RetrainingSchedulerStatus(string value)
         {
             return FindValue(value);
         }
