@@ -36,6 +36,7 @@ namespace Amazon.S3.Model
         private long? size;
         private S3StorageClass storageClass;
         private string bucketName;
+		private PntPvaInfo _pntPvaInfo;
 
         /// <summary>
         /// Gets and sets the property ChecksumAlgorithm. 
@@ -208,6 +209,18 @@ namespace Amazon.S3.Model
         internal bool IsSetStorageClass()
         {
             return this.storageClass != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PntPvaInfo. 
+        /// <para>
+        /// Specifies PVA information for the object
+        /// </para>
+        /// </summary>
+        public PntPvaInfo PntPvaInfo
+        {
+            get { return this._pntPvaInfo; }
+            set { this._pntPvaInfo = value; }
         }
     }
 }

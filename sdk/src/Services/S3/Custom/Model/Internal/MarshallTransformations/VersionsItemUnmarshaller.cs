@@ -90,9 +90,15 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                             
                         continue;
                     }
-                    if(context.TestExpression("RestoreStatus", targetDepth))
+                    if (context.TestExpression("RestoreStatus", targetDepth))
                     {
                         versionsItem.RestoreStatus = RestoreStatusUnmarshaller.Instance.Unmarshall(context);
+
+                        continue;
+                    }
+                    if (context.TestExpression("PntPvaInfo", targetDepth))
+                    {
+                        versionsItem.PntPvaInfo = PntPvaInfoUnmarshaller.Instance.Unmarshall(context);
 
                         continue;
                     }
