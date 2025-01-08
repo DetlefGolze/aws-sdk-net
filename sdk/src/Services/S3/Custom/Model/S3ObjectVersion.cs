@@ -31,6 +31,8 @@ namespace Amazon.S3.Model
         private bool? isLatest;
         private string versionId;
         private bool isDeleteMarker;
+        private RestoreStatus _restoreStatus;
+        private PntPvaInfo _pntPvaInfo;
 
         /// <summary>
         /// Specifies whether the object is (true) or is not (false) the latest version of an object.
@@ -58,5 +60,38 @@ namespace Amazon.S3.Model
             get { return this.isDeleteMarker; }
             set { this.isDeleteMarker = value; }
         }
+
+        /// <summary>
+        /// Gets and sets the property RestoreStatus. 
+        /// <para>
+        /// Specifies the restoration status of an object. Objects in certain storage classes
+        /// must be restored before they can be retrieved. For more information about these storage
+        /// classes and how to work with archived objects, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html">
+        /// Working with archived objects</a> in the <i>Amazon S3 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public RestoreStatus RestoreStatus
+        {
+            get { return this._restoreStatus; }
+            set { this._restoreStatus = value; }
+        }
+
+        // Check to see if RestoreStatus property is set
+        internal bool IsSetRestoreStatus()
+        {
+            return this._restoreStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PntPvaInfo. 
+        /// <para>
+        /// Specifies the PVA information for the object version.
+        /// </para>
+        /// </summary>
+        public PntPvaInfo PntPvaInfo
+	{
+            get { return this._pntPvaInfo; }
+            set { this._pntPvaInfo = value; }
+	}
     }
 }
